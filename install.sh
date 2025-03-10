@@ -58,14 +58,14 @@ case $AUR_choice in
     2)
         git clone https://aur.archlinux.org/paru.git
         cd paru
-        makepkg -si
+        sudo -u makepkg -si
         cd ..
         rm -rf ./paru
         ;;
     1)
         git clone https://aur.archlinux.org/yay.git
         cd yay
-        makepkg -si
+        sudo -u makepkg -si
         cd ..
         rm -rf ./yay
         ;;
@@ -100,7 +100,7 @@ case $choice1 in
         cd ../..
         # Need to check if the line exists in the .bashrc exists in the file before appending
         # echo "[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx" >> ~/.bashrc
-        cp -f ./.xinitrc/ ~/.xinitrc/
+        cp -f ./.xinitrc ~/.xinitrc
         ;;
     0)
         echo "Skipping."
