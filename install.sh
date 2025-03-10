@@ -34,6 +34,8 @@ fi
 
 echo "This Script requires GIT to be installed. Checking if GIT is installed..."
 pacman -S --noconfirm --needed base-devel git
+echo "Updating system..."
+pacman -Syu
 
 # Install text editor: Neovim
 read -p "Install and configure NeoVIM? [(1) Yes, (0) No]: " -n 1 -r nvim_choice
@@ -81,8 +83,8 @@ echo -e "\n"
 case $choice1 in
     1)
         echo "Installing dependencies..."
-        # first three are the X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
-        pacman -S --needed libx11 libxft libxinerama xorgproto slock feh picom
+        # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
+        pacman -S --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto slock feh picom
         echo "Building sl programs."
         # build dwm
         cd ./suckless/dwm/
