@@ -41,7 +41,7 @@ echo -e "\n"
 case $nvim_choice in
     1)
         pacman -S neovim npm
-        cp -rf ./nvim/ ~/.config/nvim/
+        cp -rT ./nvim ~/.config/nvim
         ;;
     0)
         echo "Skipping."
