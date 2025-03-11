@@ -2,8 +2,19 @@
 
 set -e
 
+# Define colors for scipt ricing
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+BOLD="\e[1m"
+ULINE="\e[4m"
+RESET="\033[0m"
+
 sys_reboot() {
-    read -p "Want to reboot? [(1) Yes, (0) No]: " -n 1 -r reboot
+    echo -e "\n"
+    read -p "$(echo -e "${BOLD}${YELLOW}Want to reboot? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r reboot
+    echo -e "\n"
     case $reboot in
         1)
             reboot
@@ -17,20 +28,25 @@ sys_reboot() {
     esac
 }
 
+echo -e "\n"
+echo -e "${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
+echo -e "\n"
+
 if [[ $EUID -ne 0 ]]; then
-    echo "This script requires root priveledges."
+    echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
     sudo -v
 fi
 
-echo "Updating system..."
+echo -e "Updating system..."
 pacman -Syu --noconfirm
 
-echo "This Script requires GIT to be installed. Checking if GIT is installed..."
+echo -e "This Script requires GIT to be installed. Checking if GIT is installed..."
 pacman -S --noconfirm --needed base-devel git
 
 # Read function reads user input input a variable.
 # -p adds a prompt, and -n adds a character limit.
-read -p "Set up Window Manager (dwm)? [(1) Yes, (0) No]: " -n 1 -r choice1
+echo -e "\n"
+read -p "$(echo -e "${GREEN}${BOLD}Set up Window Manager (dwm)? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r choice1
 echo -e "\n"
 case $choice1 in
     1)
@@ -38,7 +54,7 @@ case $choice1 in
         # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
         pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto brightnessctl slock feh picom
         # Installing fonts
-        pacman -S --noconfirm --needed ttf-jetbrains-mono noto-fonts-emoji
+        pacman -S --noconfirm --needed ttf-jetbrains-mono-nerd noto-fonts-emoji
         # Installing other apps
         pacman -S --needed nautilus || true
         echo "Building sl programs."
@@ -69,7 +85,8 @@ case $choice1 in
 esac
 
 # Install text editor: Alacritty
-read -p "Install and configure Alacritty? [(1) Yes, (0) No]: " -n 1 -r alctty_choice
+echo -e "\n"
+read -p "$(echo -e "${GREEN}${BOLD}Install and configure Alacritty? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r alctty_choice
 echo -e "\n"
 case $alctty_choice in
     1)
@@ -85,7 +102,8 @@ case $alctty_choice in
 esac
 
 # Install text editor: Neovim
-read -p "Install and configure NeoVIM? [(1) Yes, (0) No]: " -n 1 -r nvim_choice
+echo -e "\n"
+read -p "$(echo -e "${GREEN}${BOLD}Install and configure NeoVIM? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r nvim_choice
 echo -e "\n"
 case $nvim_choice in
     1)
