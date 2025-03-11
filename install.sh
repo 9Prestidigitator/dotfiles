@@ -58,7 +58,7 @@ case $choice1 in
         cd ../..
         # Need to check if the line exists in the .bashrc exists in the file before appending
         # echo "[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx" >> ~/.bashrc
-        cp -f ./.xinitrc home/$SUDO_USER/.xinitrc
+        cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
         ;;
     0)
         echo "Skipping."
