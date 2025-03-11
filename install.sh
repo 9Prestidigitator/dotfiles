@@ -68,9 +68,9 @@ case $sl_choice in
         # cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
         ;;
     0)
-        echo -e "Skipping.";;
+        echo -e "\nSkipping.";;
     *)
-        echo -e "Invalid input";;
+        echo -e "\nInvalid input";;
 esac
 
 # Install text editor: Alacritty
@@ -114,7 +114,7 @@ read -p "$(echo -e "\n${GREEN}${BOLD}Do you want to install VM (QEMU/KVM)? [(1) 
 case $VM_choice in
     1)
         pacman -S --needed qemu-full qemu-img libvirt virt-install virt-manager virt-viewer edk2-ovmf dnsmasq swtpm guestfs-tools libosinfo tuned || true;;
-        systemctl enable libvirtd.service
+        # systemctl enable libvirtd.service
     0)
         echo -e "\nSkipping.";;
     *)
