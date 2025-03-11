@@ -12,25 +12,19 @@ ULINE="\e[4m"
 RESET="\033[0m"
 
 sys_reboot() {
-    echo -e "\n"
-    read -p "$(echo -e "${BOLD}${YELLOW}Want to reboot? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r reboot
-    echo -e "\n"
+    read -p "$(echo -e "\n${BOLD}${YELLOW}Want to reboot? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r reboot
     case $reboot in
         1)
-            reboot
-            ;;
+            reboot;;
         *)
-            echo "Skipping reboot."
-            ;;
+            echo -e "\nSkipping reboot.";;
         *)
-            echo "Invalid input."
-            ;;
+            echo -e "\nInvalid input.";;
     esac
 }
 
-echo -e "\n"
-echo -e "${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
-echo -e "\n"
+echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
+echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
 
 if [[ $EUID -ne 0 ]]; then
     echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
@@ -45,60 +39,50 @@ pacman -S --noconfirm --needed base-devel git
 
 # Read function reads user input input a variable.
 # -p adds a prompt, and -n adds a character limit.
-echo -e "\n"
-read -p "$(echo -e "${GREEN}${BOLD}Set up Window Manager (dwm)? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r choice1
-echo -e "\n"
-case $choice1 in
+read -p "$(echo -e "\n${GREEN}${BOLD}Set up Window Manager (dwm)? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r sl_choice
+case $sl_choice in
     1)
         echo "Installing dependencies..."
-        # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
-        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom
+        # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant
+        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom starship fastfetch
         # Installing fonts
         pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
+        # Installing audio 
+        pacman -S --noconfirm --needed pavucontrol
         # Installing other apps
         pacman -S --needed nautilus || true
-        echo "Building sl programs."
-        # build dwm
-        cd ./suckless/dwm/
-        make clean install
-        # build dmenu
-        cd ../dmenu/
-        make clean install
-        # build st
-        cd ../st
-        make clean install
-        # build slstatus
-        cd ../slstatus/
-        make clean install
-
+        echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
+        cd ./suckless/dwm/ && make clean install
+        echo -e "\n${GREEN}${BOLD}Building dmenu.${RESET}\n"
+        cd ../dmenu/ && make clean install
+        echo -e "\n${GREEN}${BOLD}Building st.${RESET}\n"
+        cd ../st && make clean install
+        echo -e "\n${GREEN}${BOLD}Building slstatus.${RESET}\n"
+        cd ../slstatus/ && make clean install
+        # Adding config files
         cd ../..
-        # Need to check if the line exists in the .bashrc exists in the file before appending
-        # echo "[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx" >> ~/.bashrc
+        cp -f ./.bash_profile /home/$SUDO_USER/.bash_profile
+        cp -f ./.bashrc /home/$SUDO_USER/.bashrc
         cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
+        feh --bg-fill ./rice/wallpaper.jpg
+        cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
         ;;
     0)
-        echo "Skipping."
-        ;;
+        echo -e "Skipping.";;
     *)
-        echo "Invalid input"
-        ;;
+        echo -e "Invalid input";;
 esac
 
 # Install text editor: Alacritty
-echo -e "\n"
-read -p "$(echo -e "${GREEN}${BOLD}Install and configure Alacritty? [(1) Yes, (0) No]: ${RESET}")" -n 1 -r alctty_choice
-echo -e "\n"
+read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure Alacritty? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r alctty_choice
 case $alctty_choice in
     1)
         pacman -S --noconfirm alacritty
-        mkdir -p ~/.config/nvim && cp -fr ./configs/alacritty /home/$SUDO_USER/.config/
-        ;;
+        mkdir -p ~/.config/nvim && cp -fr ./configs/alacritty /home/$SUDO_USER/.config/;;
     0)
-        echo "Skipping."
-        ;;
+        echo -e "\nSkipping.";;
     *)
-        echo "Invalid input."
-        ;;
+        echo -e "Invalid input.";;
 esac
 
 # Install text editor: Neovim
@@ -111,11 +95,9 @@ case $nvim_choice in
         mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/
         ;;
     0)
-        echo "Skipping."
-        ;;
+        echo "Skipping.";;
     *)
-        echo "Invalid input."
-        ;;
+        echo "Invalid input.";;
 esac
 
 # Stuff to do other than troubleshooting:
