@@ -17,64 +17,16 @@ sys_reboot() {
     esac
 }
 
-install_aur() {
-    local aur_pkg = "$1"
-    if ! yay -Qi "$aur_pkg" &> /dev/null; then
-        echo "Installing $aur_pkg from AUR..."
-        yay -S --noconfirm --needed "$aur_pkg"
-    else
-        echo "$aur_pkg is already installed."
-    fi
-}
-
 if [[ $EUID -ne 0 ]]; then
     echo "This script requires root priveledges."
     sudo -v
 fi
 
-echo "This Script requires GIT to be installed. Checking if GIT is installed..."
-pacman -S --noconfirm --needed base-devel git
 echo "Updating system..."
 pacman -Syu
 
-# Install text editor: Neovim
-read -p "Install and configure NeoVIM? [(1) Yes, (0) No]: " -n 1 -r nvim_choice
-echo -e "\n"
-case $nvim_choice in
-    1)
-        pacman -S neovim npm
-        cp -rT ./nvim ~/.config/nvim
-        ;;
-    0)
-        echo "Skipping."
-        ;;
-    *)
-        echo "Invalid input."
-        ;;
-esac
-
-# Install AUR manager
-read -p "Install AUR manager? [(2) paru, (1) yay, (0) No]: " -n 1 -r AUR_choice
-echo -e "\n"
-case $AUR_choice in
-    2)
-        git clone https://aur.archlinux.org/paru.git
-        cd paru
-        sudo -u makepkg -si
-        cd ..
-        rm -rf ./paru
-        ;;
-    1)
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        sudo -u makepkg -si
-        cd ..
-        rm -rf ./yay
-        ;;
-    0)
-        echo "Skipping."
-        ;;
-esac
+echo "This Script requires GIT to be installed. Checking if GIT is installed..."
+pacman -S --noconfirm --needed base-devel git
 
 # Read function reads user input input a variable.
 # -p adds a prompt, and -n adds a character limit.
@@ -115,6 +67,42 @@ case $choice1 in
         echo "Invalid input"
         ;;
 esac
+
+# Install text editor: Alacritty
+read -p "Install and configure Alacritty? [(1) Yes, (0) No]: " -n 1 -r alctty_choice
+echo -e "\n"
+case $alctty_choice in
+    1)
+        pacman -S alacritty
+        cp -rT ./configs/alacritty /home/$SUDO_USER/.config/alacritty
+        ;;
+    0)
+        echo "Skipping."
+        ;;
+    *)
+        echo "Invalid input."
+        ;;
+esac
+
+# Install text editor: Neovim
+read -p "Install and configure NeoVIM? [(1) Yes, (0) No]: " -n 1 -r nvim_choice
+echo -e "\n"
+case $nvim_choice in
+    1)
+        pacman -S neovim npm python
+        cp -rT ./configs/nvim /home/$SUDO_USER/.config/nvim
+        ;;
+    0)
+        echo "Skipping."
+        ;;
+    *)
+        echo "Invalid input."
+        ;;
+esac
+
+# Stuff to do other than troubleshooting:
+# keyd
+#
 
 sys_reboot
 
