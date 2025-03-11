@@ -52,9 +52,9 @@ case $choice1 in
     1)
         echo "Installing dependencies..."
         # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
-        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto brightnessctl slock feh picom
+        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom
         # Installing fonts
-        pacman -S --noconfirm --needed ttf-jetbrains-mono-nerd noto-fonts-emoji
+        pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
         # Installing other apps
         pacman -S --needed nautilus || true
         echo "Building sl programs."
