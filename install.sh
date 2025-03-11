@@ -74,7 +74,7 @@ echo -e "\n"
 case $alctty_choice in
     1)
         pacman -S alacritty
-        cp -rT ./configs/alacritty /home/$SUDO_USER/.config/alacritty
+        mkdir -p ~/.config/nvim && cp -fr ./configs/alacritty /home/$SUDO_USER/.config/
         ;;
     0)
         echo "Skipping."
@@ -90,7 +90,7 @@ echo -e "\n"
 case $nvim_choice in
     1)
         pacman -S neovim npm python
-        cp -rT ./configs/nvim /home/$SUDO_USER/.config/nvim
+        mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/
         ;;
     0)
         echo "Skipping."
