@@ -64,7 +64,7 @@ case $sl_choice in
         cp -f ./.bash_profile /home/$SUDO_USER/.bash_profile
         cp -f ./.bashrc /home/$SUDO_USER/.bashrc
         cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
-        feh --bg-fill ./rice/wallpaper.jpg
+        # feh --bg-fill ./rice/wallpaper.jpg # Can't do this apparently
         cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
         ;;
     0)
