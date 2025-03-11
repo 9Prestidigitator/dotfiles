@@ -42,9 +42,9 @@ pacman -S --noconfirm --needed base-devel git
 read -p "$(echo -e "\n${GREEN}${BOLD}Set up Window Manager (dwm)? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r sl_choice
 case $sl_choice in
     1)
-        echo "Installing dependencies..."
-        # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant
-        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom starship fastfetch
+        echo -e "\nInstalling dependencies..."
+        # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
+        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom starship fastfetch keyd
         # Installing fonts
         pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
         # Installing audio 
@@ -64,8 +64,10 @@ case $sl_choice in
         cp -f ./.bash_profile /home/$SUDO_USER/.bash_profile
         cp -f ./.bashrc /home/$SUDO_USER/.bashrc
         cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
-        # feh --bg-fill ./rice/wallpaper.jpg # Can't do this apparently
-        cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
+        # These commands cause issues apparently
+        # feh --bg-fill ./rice/wallpaper.jpg 
+        # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
+        # cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
         ;;
     0)
         echo -e "Skipping.";;
@@ -92,8 +94,7 @@ echo -e "\n"
 case $nvim_choice in
     1)
         pacman -S --noconfirm neovim npm python
-        mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/
-        ;;
+        mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/;;
     0)
         echo "Skipping.";;
     *)
@@ -102,7 +103,7 @@ esac
 
 # Stuff to do other than troubleshooting:
 # keyd
-#
+# qemu/kvm option
 
 sys_reboot
 
