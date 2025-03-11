@@ -84,7 +84,11 @@ case $choice1 in
     1)
         echo "Installing dependencies..."
         # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager
-        pacman -S --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto slock feh picom
+        pacman -S --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto brightnessctl slock feh picom
+        # Installing fonts
+        pacman -S ttf-jetbrains-mono noto-fonts-emoji
+        # Installing other apps
+        pacman -S nautilus
         echo "Building sl programs."
         # build dwm
         cd ./suckless/dwm/
