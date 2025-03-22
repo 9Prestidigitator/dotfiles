@@ -51,9 +51,9 @@ case $sl_choice in
         pacman -S --noconfirm --needed pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol 
         touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >> /etc/modules-load.d/modules.conf
         usermod -aG realtime $SUDO_USER
-        sudo -u $SUDOUSER systemctl --user enable --now pipewire
-        sudo -u $SUDOUSER systemctl --user enable --now pipewire-pulse
-        sudo -u $SUDOUSER systemctl --user enable --now wireplumber
+        # sudo -u $SUDOUSER systemctl --user enable --now pipewire
+        # sudo -u $SUDOUSER systemctl --user enable --now pipewire-pulse
+        # sudo -u $SUDOUSER systemctl --user enable --now wireplumber
 
         echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
         cd ./suckless/dwm/ && make clean install
