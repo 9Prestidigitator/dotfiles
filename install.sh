@@ -47,8 +47,9 @@ case $sl_choice in
         pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom starship fastfetch keyd
         # Installing fonts
         pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
-        # Installing audio stuff
-        pacman -S --noconfirm --needed pavucontrol
+        # Installing and configuring audio stuff
+        pacman -S --noconfirm --needed pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol 
+        usermod -aG realtime $SUDO_USER
         echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
         cd ./suckless/dwm/ && make clean install
         echo -e "\n${GREEN}${BOLD}Building dmenu.${RESET}\n"
@@ -73,7 +74,7 @@ case $sl_choice in
         echo -e "\nInvalid input";;
 esac
 
-# Install text editor: Alacritty
+# Install terminal editor: Alacritty
 read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure Alacritty? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r alctty_choice
 case $alctty_choice in
     1)

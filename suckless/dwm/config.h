@@ -3,14 +3,12 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-/* static const unsigned int borderpx  = 4; */      /* border pixel of windows (surface)*/
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-/* static const unsigned int gappx     = 10; */       /* gaps between windows (surface)*/
-static const unsigned int gappx     = 6;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 2;        /* border pixel of windows (4 for surface, else 2) */
+static const unsigned int gappx     = 6;        /* gaps between windows (10 for surface, else 6) */
+static const unsigned int snap      = 24;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=12" }; /* Use 24 for larger displays. */
+static const char *fonts[]          = { "JetBrains Mono:size=12" }; /* Use 24 for larger displays, else 12. */
 static const char dmenufont[]       = "JetBrains Mono:size=12";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
@@ -24,23 +22,31 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+/* appicons */
+/* NOTE: set to 0 to set to default (whitespace) */
+static char outer_separator_beg      = '[';
+static char outer_separator_end      = ']';
+static char inner_separator          = ' ';
+static unsigned truncate_icons_after = 2; /* will default to 1, that is the min */
+static char truncate_symbol[]         = "..."; //⋯
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "R_x11",    NULL,       NULL,       0,       	    1,           -1 },
-	{ "Matplotlib",NULL,      NULL,       0,       	    1,           -1 },
-	{ "org.gnome.Nautilus",NULL,NULL,     0,       	    1,           -1 },
-	{ "Eclipse",  NULL,	  NULL,       0,       	    1,           -1 },
-	{ "Java",     NULL,	  NULL,       0,       	    1,           -1 },
-	{ "pavucontrol",     NULL,	  NULL,       0,       	    1,           -1 },
-	{ "steam",     NULL,	  NULL,       0,       	    1,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor    appicon */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        NULL },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        "󰈹" },
+	{ "R_x11",    NULL,       NULL,       0,       	    1,           -1,        NULL },
+	{ "Matplotlib",NULL,      NULL,       0,       	    1,           -1,        NULL },
+	{ "org.gnome.Nautilus",NULL,NULL,     0,       	    1,           -1,        NULL },
+	{ "Eclipse",  NULL,       NULL,       0,       	    1,           -1,        NULL },
+	{ "Java",     NULL,       NULL,       0,       	    1,           -1,        NULL },
+	{ "pavucontrol",NULL,     NULL,       0,            1,           -1,        NULL },
+	{ "steam",     NULL,	  NULL,       0,       	    1,           -1,        NULL },
 };
 
 /* layout(s) */
@@ -73,6 +79,23 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL }; /* Default terminal. Default is st. */
 
+// Function that increments the tag
+void
+viewnext(const Arg *arg) {
+    int i = selmon->tagset[selmon->seltags];
+    i = (i << 1) | (i >> (LENGTH(tags) - 1));
+    const Arg a = {.ui = i};
+    view(&a);
+}
+// Function that decrements the tag
+void 
+viewprev(const Arg *arg) {
+    int i = selmon->tagset[selmon->seltags];
+    i = (i >> 1) | (i << (LENGTH(tags) - 1));
+    const Arg a = {.ui = i};
+    view(&a);
+}
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
@@ -99,7 +122,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") },
-	/* { 0,             		0x1008FF81, spawn,	   SHCMD("slock") }, */
+	/* { 0,             		0x1008FF81, spawn,	   SHCMD("slock") }, // used for chromebook lock button */
 	{ MODKEY|ShiftMask,             XK_b, 	   spawn,	        SHCMD("firefox") },
 	{ MODKEY,                       XK_e,      spawn,	        SHCMD("nautilus-dark") },
 	{ MODKEY|ShiftMask,             XK_s, 	   spawn,           SHCMD("scrot --select -q 100 - | xclip -selection clipboard -t image/png") },
@@ -111,6 +134,8 @@ static const Key keys[] = {
 	{ 0,				XF86XK_AudioRaiseVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
 	{ 0,				XF86XK_AudioLowerVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
 	{ 0,				        XF86XK_Launch5,      spawn,	   SHCMD("toggle-touchpad.sh") },
+    { MODKEY,                       XK_x,      viewnext,      {0} },
+    { MODKEY,                       XK_z,      viewprev,      {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -139,4 +164,6 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
+
 
