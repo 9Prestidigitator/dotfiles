@@ -37,6 +37,18 @@ pacman -Syu --noconfirm
 echo -e "This Script requires GIT to be installed. Checking if GIT is installed..."
 pacman -S --noconfirm --needed base-devel git
 
+# Install text editor: Neovim
+read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure NeoVIM? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r nvim_choice
+case $nvim_choice in
+    1)
+        pacman -S --noconfirm neovim npm python zathura
+        mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/;;
+    0)
+        echo -e "\nSkipping.";;
+    *)
+        echo -e "\nInvalid input.";;
+esac
+
 # Read function reads user input input a variable.
 # -p adds a prompt, and -n adds a character limit.
 read -p "$(echo -e "\n${GREEN}${BOLD}Set up Window Manager (dwm)? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r sl_choice
@@ -44,11 +56,15 @@ case $sl_choice in
     1)
         echo -e "\nInstalling dependencies..."
         # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
-        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr xorg-xev brightnessctl slock feh picom starship fastfetch keyd
+        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr autorandr xorg-xev brightnessctl slock feh picom starship fastfetch keyd
         # Installing fonts
         pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
+        # Installing and configuring security measures
+        pacman -S --noconfirm --needed ufw fail2ban openssh
+        # sudo systemctl enable ufw
         # Installing and configuring audio stuff
         pacman -S --noconfirm --needed pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol 
+        # dev/mixer is really old so got to load snd_pcm_oss module manually
         touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >> /etc/modules-load.d/modules.conf
         usermod -aG realtime $SUDO_USER
         # sudo -u $SUDOUSER systemctl --user enable --now pipewire
@@ -79,24 +95,12 @@ case $sl_choice in
         echo -e "\nInvalid input";;
 esac
 
-# Install terminal editor: Alacritty
+# Install terminal emulator: Alacritty
 read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure Alacritty? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r alctty_choice
 case $alctty_choice in
     1)
         pacman -S --noconfirm alacritty
         mkdir -p ~/.config/nvim && cp -fr ./configs/alacritty /home/$SUDO_USER/.config/;;
-    0)
-        echo -e "\nSkipping.";;
-    *)
-        echo -e "\nInvalid input.";;
-esac
-
-# Install text editor: Neovim
-read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure NeoVIM? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r nvim_choice
-case $nvim_choice in
-    1)
-        pacman -S --noconfirm neovim npm python
-        mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/;;
     0)
         echo -e "\nSkipping.";;
     *)
