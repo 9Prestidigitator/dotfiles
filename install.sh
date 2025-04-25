@@ -56,10 +56,10 @@ case $sl_choice in
     1)
         echo -e "\nInstalling dependencies..."
         # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
-        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr autorandr xorg-xev brightnessctl slock feh picom starship fastfetch keyd
+        pacman -S --noconfirm --needed xorg-server xorg-xinit libx11 libxft libxinerama xorgproto xorg-xrandr autorandr xorg-xev brightnessctl slock maim xclip feh picom starship fastfetch keyd
         # Installing fonts
         pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji
-        # Installing and configuring security measures
+        # Installing and configuring security packages
         pacman -S --noconfirm --needed ufw fail2ban openssh
         # sudo systemctl enable ufw
         # Installing and configuring audio stuff

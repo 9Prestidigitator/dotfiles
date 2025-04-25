@@ -30,7 +30,7 @@ static char outer_separator_beg      = '[';
 static char outer_separator_end      = ']';
 static char inner_separator          = ' ';
 static unsigned truncate_icons_after = 2; /* will default to 1, that is the min */
-static char truncate_symbol[]         = "..."; //⋯
+static char truncate_symbol[]         = "⋯"; //⋯
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -47,6 +47,8 @@ static const Rule rules[] = {
 	{ "Java",     NULL,       NULL,       0,       	    1,           -1,        NULL },
 	{ "pavucontrol",NULL,     NULL,       0,            1,           -1,        NULL },
 	{ "steam",     NULL,	  NULL,       0,       	    1,           -1,        NULL },
+	{ "Virt-manager", NULL,	  NULL,       0,       	    1,           -1,        NULL },
+	{ "feh", 	NULL,	  NULL,       0,       	    1,           -1,        NULL },
 };
 
 /* layout(s) */
@@ -105,11 +107,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,	                    XK_q,      killclient,     {0} },
+	{ MODKEY,	                XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -121,21 +123,20 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") },
-	/* { 0,             		0x1008FF81, spawn,	   SHCMD("slock") }, // used for chromebook lock button */
-	{ MODKEY|ShiftMask,             XK_b, 	   spawn,	        SHCMD("firefox") },
-	{ MODKEY,                       XK_e,      spawn,	        SHCMD("nautilus-dark") },
-	{ MODKEY|ShiftMask,             XK_s, 	   spawn,           SHCMD("scrot --select -q 100 - | xclip -selection clipboard -t image/png") },
-	{ MODKEY,                       XK_F1, 	   spawn,           SHCMD("brightnessctl set 5%-") },
-	{ MODKEY,                       XK_F2,     spawn,           SHCMD("brightnessctl set +5%") },
+	{ MODKEY,                       XK_l,      spawn,          SHCMD("slock") },
+	{ MODKEY|ShiftMask,             XK_b, 	   spawn,	   SHCMD("firefox") },
+	{ MODKEY,                       XK_e,      spawn,	   SHCMD("nautilus-dark") },
+	{ MODKEY|ShiftMask,             XK_s, 	   spawn,          SHCMD("maim -so | xclip -selection clipboard -t image/png") },
+	{ MODKEY,                       XK_F1, 	   spawn,          SHCMD("brightnessctl set 5%-") },
+	{ MODKEY,                       XK_F2,     spawn,          SHCMD("brightnessctl set +5%") },
 	{ 0,                            XF86XK_AudioMute,spawn,	   SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
 	{ MODKEY,			XK_F10,    spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
 	{ MODKEY,			XK_F9, 	   spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
 	{ 0,				XF86XK_AudioRaiseVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
 	{ 0,				XF86XK_AudioLowerVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
-	{ 0,				        XF86XK_Launch5,      spawn,	   SHCMD("toggle-touchpad.sh") },
-    { MODKEY,                       XK_x,      viewnext,      {0} },
-    { MODKEY,                       XK_z,      viewprev,      {0} },
+	{ 0,				XF86XK_AudioPlay,      spawn,	   SHCMD("toggle-touchpad.sh") },
+    	{ MODKEY,                       XK_x,      viewnext,      {0} },
+    	{ MODKEY,                       XK_z,      viewprev,      {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
