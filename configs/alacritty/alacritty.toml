@@ -1,21 +1,27 @@
 [font]
-size = 9.0
-# 12 for surface
+size = 12.0
 
 [font.normal]
 family = "JetBrains Mono"
 style = "Regular"
 
 [window]
-opacity=0.6
+opacity=0
+decorations="None"
+dynamic_padding=true
+blur=true # only works on macOS/wayland
+decorations_theme_variant="Dark"
 
 [window.padding]
-x=8
-y=8
+x=4
+y=0
 
 [colors]
 
 [selection]
 save_to_clipboard = true
 
+[cursor.style]
+shape = "Block"
+blinking = "On"
 

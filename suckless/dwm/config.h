@@ -15,10 +15,17 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char *colors[][3]      = {
+static const unsigned int baralpha = 0x33;
+static const unsigned int seethru = 0x00;
+static const char *colors[][3]            = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
+	[SchemeSel]  = { col_gray4, col_gray1, col_gray2 },
+};
+static const unsigned int alphas[][3]     = {
+  /*               fg      bg        border*/
+  [SchemeNorm] = { OPAQUE, seethru, seethru },
+  [SchemeSel]  = { OPAQUE, seethru, seethru },
 };
 
 /* tagging */
@@ -46,9 +53,10 @@ static const Rule rules[] = {
 	{ "Eclipse",  NULL,       NULL,       0,       	    1,           -1,        NULL },
 	{ "Java",     NULL,       NULL,       0,       	    1,           -1,        NULL },
 	{ "pavucontrol",NULL,     NULL,       0,            1,           -1,        NULL },
-	{ "steam",     NULL,	  NULL,       0,       	    1,           -1,        NULL },
+	{ "steam",        NULL,	  NULL,       0,       	    1,           -1,        NULL },
 	{ "Virt-manager", NULL,	  NULL,       0,       	    1,           -1,        NULL },
-	{ "feh", 	NULL,	  NULL,       0,       	    1,           -1,        NULL },
+	{ "feh", 	        NULL,	  NULL,       0,       	    1,           -1,        NULL },
+	{ "zenity",       NULL,	  NULL,       0,       	    1,           -1,        NULL },
 };
 
 /* layout(s) */
