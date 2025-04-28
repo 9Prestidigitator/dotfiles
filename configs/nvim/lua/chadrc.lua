@@ -21,17 +21,25 @@ M.base46 = {
     bg = "NONE",
     bold = true,
   }),
+  vim.api.nvim_set_hl(0, "LineNrAbove", {
+      fg = "#51B3EC",
+      bold = false,
+  }),
+  vim.api.nvim_set_hl(0, "LineNrBelow", {
+      fg = "#FB508F",
+      bold = false,
+  }),
 
   hl_override = {
     -- Lighten inactive tabs
-    TabLine = {
-      fg = "#7f849c", -- a light greyish color
-      bg = "NONE",
-    },
-    TabLineFill = {
-      fg = "#7f849c",
-      bg = "NONE",
-    },
+    -- TabLine = {
+    --   fg = "#7f849c", -- a light greyish color
+    --   bg = "NONE",
+    -- },
+    -- TabLineFill = {
+    --   fg = "#7f849c",
+    --   bg = "NONE",
+    -- },
     TabLineSel = {
       fg = "#cdd6f4",
       bg = "NONE",
@@ -60,9 +68,6 @@ M.base46 = {
     CursorLineNr = {
       fg = "#f5e0dc",
       bold = true,
-    },
-    LineNr = {
-      fg = "#bac2de",
     },
     -- Comment formatting
     ["@comment"] = {

@@ -28,17 +28,25 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
-    pyright = {
-      disableOrganizeImports = true,
-    },
-    python = {
-      analysis = {
-        ignore = { "*" },
-      },
-    },
+    -- pyright = {
+    --   disableOrganizeImports = false,
+    -- },
+    -- python = {
+    --   analysis = {
+    --     ignore = { "*" },
+    --   },
+    -- },
   },
   filetypes = { "python" },
 }
+
+-- require('lspconfig').ruff.setup({
+--   init_options = {
+--     settings = {
+--       logLevel = 'info',
+--     }
+--   }
+-- })
 
 local servers = { "html", "cssls" }
 vim.lsp.enable(servers)

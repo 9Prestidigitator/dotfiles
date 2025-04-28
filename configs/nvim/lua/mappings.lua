@@ -1,7 +1,6 @@
 require "nvchad.mappings"
 
 -- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -13,6 +12,7 @@ map("n", "<leader>dr", "<cmd> DapContinue <cr>", { desc = "Start or continue the
 map("n", "<leader>dl", "<cmd> DapStepOver <cr>", { desc = "Debugger: Step over" })
 map("n", "<leader>dk", "<cmd> DapStepOut <cr>", { desc = "Debugger: Step Out" })
 map("n", "<leader>dj", "<cmd> DapStepInto <cr>", { desc = "Debugger: Step Into" })
+
 -- Python debuggin commands
 map("n", "<leader>dpr", function()
   require("dap-python").test_method()
@@ -23,7 +23,13 @@ local python_term_bufnr = nil
 local python_term_winid = nil
 map("n", "<leader>rr", function()
   local file = vim.fn.expand "%:p"
+  local name = vim.fn.expand "%"
   local venv = os.getenv "VIRTUAL_ENV"
+
+  if not name:match("%.py") then
+    vim.notify("Not a python file!", vim.log.levels.ERROR)
+    return
+  end
 
   -- If no terminal exists yet, open one
   if not (python_term_bufnr and vim.api.nvim_buf_is_valid(python_term_bufnr)) then

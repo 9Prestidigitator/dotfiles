@@ -13,11 +13,14 @@ local options = {
   sources = {
     null_ls.builtins.formatting.black,
 
-    null_ls.builtins.diagnostics.mypy.with({
-      command = venv_selector("mypy"),
-    }),
+    null_ls.builtins.diagnostics.mypy.with {
+      command = venv_selector "mypy",
+      extra_args = { "--ignore-missing-imports" },
+    },
 
-    require "none-ls.diagnostics.ruff",
+    -- require("none-ls.diagnostics.ruff").with {
+    --   command = venv_selector "ruff",
+    -- },
   },
 }
 

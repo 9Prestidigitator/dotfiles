@@ -9,20 +9,28 @@ return {
     end,
   },
 
-  -- Save and Load buffers (a session) automatically for each folder
+  {
+    -- "Vigemus/iron.nvim",
+    "g0t4/iron.nvim",
+    branch = "fix-clear-repl",
+    enabled = true,
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      return require("configs.iron-nvim")
+    end
+  },
+
+  -- Save and Load buffers automatically for each directory
   {
     "rmagatti/auto-session",
     lazy = false,
-    ---enables autocomplete for opts
-    ---@module "auto-session"
-    ---@type AutoSession.Config
-    opts = {
-      suppressed_dirs = { "~/", "~/Downloads", "/" },
-      -- log_level = 'debug',
-    },
+    --enables autocomplete for opts
+    --@module "auto-session"
+    --@type AutoSession.Config
+    opts = require("configs.auto-session"),
   },
 
-  -- Debugger
+  -- Debugger stuff
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
