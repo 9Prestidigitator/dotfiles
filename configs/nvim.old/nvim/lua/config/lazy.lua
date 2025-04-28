@@ -192,12 +192,14 @@ require("lazy").setup({
 		-- Save and Load buffers (a session) automatically for each folder
 		{
 			"rmagatti/auto-session",
-			config = function()
-				require("auto-session").setup({
-					log_level = "error",
-					auto_session_suppress_dirs = { "~/", "~/Downloads" },
-				})
-			end,
+			lazy = false,
+			---enables autocomplete for opts
+			---@module "auto-session"
+			---@type AutoSession.Config
+			opts = {
+				suppressed_dirs = { "~/", "~/Downloads", "/" },
+				-- log_level = 'debug',
+			},
 		},
 
 		-- Run multiple terminals

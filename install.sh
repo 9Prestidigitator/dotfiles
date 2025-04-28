@@ -37,11 +37,13 @@ pacman -Syu --noconfirm
 echo -e "This Script requires GIT to be installed. Checking if GIT is installed..."
 pacman -S --noconfirm --needed base-devel git
 
-# Install text editor: Neovim
+# Install main editor: Neovim
 read -p "$(echo -e "\n${GREEN}${BOLD}Install and configure NeoVIM? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r nvim_choice
 case $nvim_choice in
     1)
-        pacman -S --noconfirm neovim npm python zathura
+        pacman -S --noconfirm neovim npm python  
+        # These packages are needed for latex editing
+        pacman -S zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science  
         mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/;;
     0)
         echo -e "\nSkipping.";;

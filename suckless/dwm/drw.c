@@ -57,8 +57,6 @@ drw_create(Display *dpy, int screen, Window root, unsigned int w, unsigned int h
 	drw->root = root;
 	drw->w = w;
 	drw->h = h;
-	// drw->drawable = XCreatePixmap(dpy, root, w, h, DefaultDepth(dpy, screen));
-	// drw->gc = XCreateGC(dpy, root, 0, NULL);
 	drw->visual = visual;
 	drw->depth = depth;
 	drw->cmap = cmap;
@@ -80,7 +78,6 @@ drw_resize(Drw *drw, unsigned int w, unsigned int h)
 	drw->h = h;
 	if (drw->drawable)
 		XFreePixmap(drw->dpy, drw->drawable);
-	// drw->drawable = XCreatePixmap(drw->dpy, drw->root, w, h, DefaultDepth(drw->dpy, drw->screen));
   drw->drawable = XCreatePixmap(drw->dpy, drw->root, w, h, drw->depth);
 }
 
@@ -181,8 +178,6 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname, unsigned int alpha)
 	if (!drw || !dest || !clrname)
 		return;
 
-	// if (!XftColorAllocName(drw->dpy, DefaultVisual(drw->dpy, drw->screen),
-	//                        DefaultColormap(drw->dpy, drw->screen),
 	if (!XftColorAllocName(drw->dpy, drw->visual, drw->cmap,
 	                       clrname, dest))
 		die("error, cannot allocate color '%s'", clrname);
