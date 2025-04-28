@@ -3,13 +3,13 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows (4 for surface, else 2) */
+static const unsigned int borderpx  = 2;        /* gaps between windows (4 for surface, else 2) */
 static const unsigned int gappx     = 6;        /* gaps between windows (10 for surface, else 6) */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=12" }; /* Use 24 for larger displays, else 12. */
-static const char dmenufont[]       = "JetBrains Mono:size=12";
+static const char *fonts[]          = { "JetBrains Mono:size=24" }; /* Use 24 for larger displays, else 12. */
+static const char dmenufont[]       = "JetBrains Mono:size=24";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -47,6 +47,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor    appicon */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        NULL },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        "󰈹" },
+	{ "Brave",    NULL,       NULL,       1 << 8,       0,           -1,        NULL },
 	{ "R_x11",    NULL,       NULL,       0,       	    1,           -1,        NULL },
 	{ "Matplotlib",NULL,      NULL,       0,       	    1,           -1,        NULL },
 	{ "org.gnome.Nautilus",NULL,NULL,     0,       	    1,           -1,        NULL },
@@ -119,7 +120,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,	                XK_q,      killclient,     {0} },
+	{ MODKEY,	                      XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -132,19 +133,19 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_l,      spawn,          SHCMD("slock") },
-	{ MODKEY|ShiftMask,             XK_b, 	   spawn,	   SHCMD("firefox") },
-	{ MODKEY,                       XK_e,      spawn,	   SHCMD("nautilus-dark") },
+	{ MODKEY|ShiftMask,             XK_b, 	   spawn,	         SHCMD("firefox") },
+	{ MODKEY,                       XK_e,      spawn,	         SHCMD("nautilus-dark") },
 	{ MODKEY|ShiftMask,             XK_s, 	   spawn,          SHCMD("maim -so | xclip -selection clipboard -t image/png") },
 	{ MODKEY,                       XK_F1, 	   spawn,          SHCMD("brightnessctl set 5%-") },
 	{ MODKEY,                       XK_F2,     spawn,          SHCMD("brightnessctl set +5%") },
 	{ 0,                            XF86XK_AudioMute,spawn,	   SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
-	{ MODKEY,			XK_F10,    spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-	{ MODKEY,			XK_F9, 	   spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
-	{ 0,				XF86XK_AudioRaiseVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-	{ 0,				XF86XK_AudioLowerVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
-	{ 0,				XF86XK_AudioPlay,      spawn,	   SHCMD("toggle-touchpad.sh") },
-    	{ MODKEY,                       XK_x,      viewnext,      {0} },
-    	{ MODKEY,                       XK_z,      viewprev,      {0} },
+	{ MODKEY,			                  XK_F10,    spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
+	{ MODKEY,			                  XK_F9, 	   spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+	{ 0,				            XF86XK_AudioRaiseVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
+	{ 0,				            XF86XK_AudioLowerVolume,spawn,	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+	{ 0,				              XF86XK_AudioPlay,      spawn,	   SHCMD("toggle-touchpad.sh") },
+  { MODKEY,                       XK_x,      viewnext,      {0} },
+  { MODKEY,                       XK_z,      viewprev,      {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
