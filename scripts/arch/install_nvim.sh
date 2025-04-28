@@ -3,7 +3,7 @@ source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 root_check
 
-latexinstall="${1:-$(prompt "Install necessary latex packages? (1/0)")}")
+latexinstall="${1:-$(prompt "Install necessary latex packages? (1/0)")}"
 
 pacman -S --noconfirm neovim npm python
 # These packages are needed for latex editing
