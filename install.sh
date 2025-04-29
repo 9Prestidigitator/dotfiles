@@ -11,11 +11,11 @@ echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linu
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install window manager: dwm
-dwm=$(prompt_run "Configure and build dwm?" ./scripts/arch/build_sl.sh 0)
+dwm=$(prompt_run "Configure and build dwm?" ./scripts/arch/build_sl.sh)
 # Need some sort of graphical interface for best experience:
-if [[ $dwm -eq 1 ]]; then
+if [[ "$dwm" -eq 1 ]]; then
   # Install terminal emulator: Alacritty
-  prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh || 0
+  prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh
   # Install basic gui applications
   prompt_run "Install basic GUI applications?" ./scripts/arch/install_gui_basic.sh
   # Install DAW and other audio packages
