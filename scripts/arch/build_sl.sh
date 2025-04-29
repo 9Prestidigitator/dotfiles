@@ -18,7 +18,7 @@ else
 fi
 sed -i "s/^\(static const unsigned int borderpx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[0]}\2/" ./suckless/dwm/config.h
 sed -i "s/^\(static const unsigned int gappx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[1]}\2/" ./suckless/dwm/config.h
-sed -i -E "s/(size=)[0-9]+/\1${config_preset_array1[2]}/" ./suckless/dwm/config.h
+sed -i -E "s/(size=)[0-9]+/\1${config_preset_array1[2]}/" ./suckleSo in the ss/dwm/config.h
 # sed -i "s/^\(static const char *fonts[] *= *{ *\"JetBrains Mono:size=\)[0-9]\+\(.*\)/\1${config_preset_array1[2]}\2/" ./suckless/dwm/config.h
 
 echo -e "\nInstalling dependencies...\n"
