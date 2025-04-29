@@ -3,7 +3,9 @@ source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 root_check
 
-DISPRESET="${1:-$(prompt "Display Presets:\n1: Around 1080p\n2: Around 1440p")}"
+# DISPRESET="${1:-$(prompt "Display Presets:\n1) Around 1080p\n2: Around 1440p")}"
+DISPRESET="${1:-$(prompt $'Display Presets:\n1) Around 1080p\n2) Around 1440p')}"
+
 
 echo "$DISPRESET"
 

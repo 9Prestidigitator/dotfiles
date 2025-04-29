@@ -5,7 +5,7 @@ root_check
 
 # latexinstall="${1:-$(prompt "Install necessary latex packages? (1/0)")}"
 
-pacman -S --noconfirm neovim npm python
+pacman -S --noconfirm --needed neovim npm python
 # These packages are needed for latex editing
 prompt_run "Install necessary latex packages?" pacman -S --needed --noconfirm zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science
 # if [[ $latexinstall -eq 1 ]]; then
