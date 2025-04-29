@@ -64,4 +64,4 @@ echo -e "\n${YELLOW}Reboot required to take effect.${RESET}\n"
 # WIP: These commands cause issues apparently
 # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
-feh --bg-fill ./img/wallpaper.jpg
+feh --bg-fill ./imgs/wallpaper.jpg
