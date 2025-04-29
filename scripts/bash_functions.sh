@@ -38,7 +38,7 @@ prompt_run() {
   local text="$1"
   shift
   local cmd="$@"
-  read -p "$(echo -en "\n${GREEN}${BOLD}$text [y/n]: ${RESET}\n")" -n 1 -r user_input
+  read -p "$(echo -en "\n${GREEN}${BOLD}$text [y/n]: ${RESET}\n")" -nr 1 user_input
   if [[ "$user_input" =~ ^[Yy]$ ]]; then
     eval "$cmd"
     local num=

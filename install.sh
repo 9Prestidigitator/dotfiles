@@ -13,6 +13,8 @@ nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install window manager: dwm
 dwm=$(prompt_run "Configure and build dwm?" ./scripts/arch/build_sl.sh)
 
+echo "$dwm"
+
 # Need some sort of display server for best experience:
 if [[ "$dwm" -eq 1 ]]; then
   # Install terminal emulator: Alacritty
