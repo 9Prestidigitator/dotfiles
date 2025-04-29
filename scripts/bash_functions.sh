@@ -41,10 +41,11 @@ prompt_run() {
   read -p "$(echo -en "\n${GREEN}${BOLD}$text [y/n]: ${RESET}\n")" -n 1 -r user_input
   if [[ "$user_input" =~ ^[Yy]$ ]]; then
     eval "$cmd"
+    echo "1"
   else
     echo -en "\nAborted.\n"
+    echo "0"
   fi
-  return 0
 }
 
 boldbluetext() {

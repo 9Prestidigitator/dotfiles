@@ -63,6 +63,6 @@ echo -e "\n${YELLOW}Reboot required to take effect.${RESET}\n"
 # sudo -u $SUDOUSER systemctl --user enable --now wireplumber
 
 # WIP: These commands cause issues apparently
-# feh --bg-fill ./rice/wallpaper.jpg
 # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
-# cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
+cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
+feh --bg-fill ./rice/wallpaper.jpg
