@@ -6,14 +6,14 @@ root_check
 DISPRESET="${1:-$(prompt "Display Presets:\n1: Around 1080p\n2: Around 1440p")}"
 
 echo -e "\n${BLUE}${BOLD}Configuring suckless programs...${RESET}\n"
-if [[ $DISPRESET -eq 1 ]]; then
+if [[ "$DISPRESET" -eq 1 ]]; then
   # Presets for a 1080 screen
   # borderpx, gappx, *fonts, demenufonts
   config_preset_array1=(2 6 12 12)
-elif [[ $DISPRESET -eq 2 ]]; then
+elif [[ "$DISPRESET" -eq 2 ]]; then
   # Presets for a 1440 screen
   config_preset_array1=(4 10 24 24)
-else; then
+else
   config_preset_array1=(2 6 12 12)
 fi
 sed -i "s/^\(static const unsigned int borderpx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[0]}\2/" ./suckless/dwm/config.h

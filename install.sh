@@ -15,7 +15,7 @@ dwm=$(prompt_run "Configure and build dwm?" ./scripts/arch/build_sl.sh 0)
 # Need some sort of graphical interface for best experience:
 if [[ $dwm -eq 1 ]]; then
   # Install terminal emulator: Alacritty
-  prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh
+  prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh || 0
   # Install basic gui applications
   prompt_run "Install basic GUI applications?" ./scripts/arch/install_gui_basic.sh
   # Install DAW and other audio packages
