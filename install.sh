@@ -12,7 +12,8 @@ echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linu
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install window manager: dwm
 dwm=$(prompt_run "Configure and build dwm?" ./scripts/arch/build_sl.sh)
-# Need some sort of graphical interface for best experience:
+
+# Need some sort of display server for best experience:
 if [[ "$dwm" -eq 1 ]]; then
   # Install terminal emulator: Alacritty
   prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh
@@ -24,5 +25,7 @@ fi
 
 # Bonus: Install Virtual Machine: QEMU/KVM
 prompt_run "Do you want to install VM (QEMU/KVM)?" ./scripts/arch/qemuKVM.sh
+
+echo $dwm
 
 sys_reboot
