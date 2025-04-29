@@ -3,7 +3,6 @@ source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 root_check
 
-# DISPRESET="${1:-$(prompt "Display Presets:\n1) Around 1080p\n2: Around 1440p")}"
 DISPRESET="${1:-$(prompt $'\tDisplay Presets:\n\t\t1) Around 1080p\n\t\t2) Around 1440p\n')}"
 
 echo "$DISPRESET"
@@ -11,18 +10,17 @@ echo "$DISPRESET"
 echo -e "\n${BLUE}${BOLD}Configuring suckless programs...${RESET}\n"
 if [[ "$DISPRESET" -eq 1 ]]; then
   # Presets for a 1080 screen
-  # borderpx, gappx, *fonts, demenufonts
-  config_preset_array1=(2 6 12 12)
+  # borderpx, gappx, fontsize
+  config_preset_array1=(2 6 12 )
 elif [[ "$DISPRESET" -eq 2 ]]; then
   # Presets for a 1440 screen
-  config_preset_array1=(4 10 24 24)
+  config_preset_array1=(4 10 24)
 else
-  config_preset_array1=(2 6 12 12)
+  config_preset_array1=(2 6 12)
 fi
 sed -i "s/^\(static const unsigned int borderpx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[0]}\2/" ./suckless/dwm/config.h
 sed -i "s/^\(static const unsigned int gappx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[1]}\2/" ./suckless/dwm/config.h
 sed -i -E "s/(size=)[0-9]+/\1${config_preset_array1[2]}/" ./suckless/dwm/config.h
-# sed -i "s/^\(static const char *fonts[] *= *{ *\"JetBrains Mono:size=\)[0-9]\+\(.*\)/\1${config_preset_array1[2]}\2/" ./suckless/dwm/config.h
 
 echo -e "\nInstalling dependencies...\n"
 # X11 packages, slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
@@ -63,5 +61,6 @@ echo -e "\n${YELLOW}Reboot required to take effect.${RESET}\n"
 
 # WIP: These commands cause issues apparently
 # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
+
 cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
 feh --bg-fill ./imgs/wallpaper.jpg

@@ -40,11 +40,10 @@ prompt_run() {
   local cmd="$@"
   read -p "$(echo -en "\n${GREEN}${BOLD}$text [y/n]: ${RESET}\n")" -n 1 -r user_input
   if [[ "$user_input" =~ ^[Yy]$ ]]; then
-    eval "$cmd"
-    local num=
+    eval "$cmd" >&2
     echo "1"
   else
-    echo -en "\nAborted.\n"
+    echo -en "\nAborted.\n" >&2
     echo "0"
   fi
 }
