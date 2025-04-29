@@ -30,7 +30,7 @@ sys_reboot() {
 prompt() {
   local text="$1"
   local user_input
-  read -p "$(echo -en "\n${GREEN}${BOLD}$text ${RESET}\n")" -n 1 -r user_input
+  read -p "$(echo -en "\n${GREEN}${BOLD}$text ${RESET}\n")" -rn 1 user_input
   echo "$user_input"
 }
 

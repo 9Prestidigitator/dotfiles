@@ -13,6 +13,8 @@ if [[ $DISPRESET -eq 1 ]]; then
 elif [[ $DISPRESET -eq 2 ]]; then
   # Presets for a 1440 screen
   config_preset_array1=(4 10 24 24)
+else; then
+  config_preset_array1=(2 6 12 12)
 fi
 sed -i "s/^\(static const unsigned int borderpx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[0]}\2/" ./suckless/dwm/config.h
 sed -i "s/^\(static const unsigned int gappx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[1]}\2/" ./suckless/dwm/config.h
