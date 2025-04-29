@@ -26,6 +26,6 @@ fi
 # Bonus: Install Virtual Machine: QEMU/KVM
 prompt_run "Do you want to install VM (QEMU/KVM)?" ./scripts/arch/qemuKVM.sh
 
-echo $dwm
+echo "$dwm"
 
 sys_reboot
