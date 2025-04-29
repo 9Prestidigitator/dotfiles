@@ -4,6 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* gaps between windows (4 for surface, else 2) */
+// static const unsigned int borderpx  = 2;        /* gaps between windows (4 for surface, else 2) */
 static const unsigned int gappx     = 6;        /* gaps between windows (10 for surface, else 6) */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
