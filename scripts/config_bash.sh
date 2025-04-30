@@ -20,7 +20,7 @@ fi
 
 # Installing custom ~/.bash_profile
 default_bash_prof=$'#\n# ~/.bash_profile\n#'
-bash_prof_header=$(head -n 3 /home/$SUDO_USER/.bashrc || true)
+bash_prof_header=$(head -n 3 /home/$SUDO_USER/.bash_profile || true)
 if [[ "$default_bash_prof" == "$bash_prof_header" ]]; then
   bluetext "Default bash_profile found, replacing with my own."
   customprof=$"#\n# ~/.bash_profile (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\n\tsource ~/dotfiles/.bash_profile\nfi\n"
