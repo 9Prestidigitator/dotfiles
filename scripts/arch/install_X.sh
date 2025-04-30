@@ -26,7 +26,7 @@ sed -i -E "s/(QT_SCALE_FACTOR=)[0-9]+/\1${config_preset_array1[3]}/" ./.bash_pro
 
 # run build sl script
 echo -e "\nInstalling dependencies...\n"
-pacman -S --noconfirm --needed base-devel xorg-server xorg-xinit xorg-xset libx11 libxft libxinerama free2type fontconfig
+pacman -S --noconfirm --needed base-devel xorg-server xorg-xinit xorg-xset libx11 libxft libxinerama fontconfig
 ./scripts/build_sl.sh
 
 # Extra X11 packages: slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
