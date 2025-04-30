@@ -9,7 +9,7 @@ cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
 cp -fr ./configs/fastfetch /home/$SUDO_USER/.config/
 
 default_bashrc=$'#\n# ~/.bashrc\n#'
-bashrc_header=$(head -n 3 ~/.bashrc || true)
+bashrc_header=$(head -n 3 /home/$SUDO_USER/.bashrc || true)
 
 if [[ "$default_bashrc" == "$bashrc_header" ]]; then
   bluetext "default bashrc found, replacing with my own."
