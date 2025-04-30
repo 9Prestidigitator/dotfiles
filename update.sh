@@ -5,7 +5,8 @@ pacupdate
 gitupdate
 
 ensure_in_dir
-git pull https://github.com/9Prestidigitator/dotfiles.git
+
+prompt_run "Want to update repository?" git pull https://github.com/9Prestidigitator/dotfiles.git
 
 root_check
 ./scripts/build_sl.sh

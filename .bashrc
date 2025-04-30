@@ -14,14 +14,15 @@ if [ -t 1 ] && [ -z "$TMUX" ] && [ -z "$FASTFETCH_RAN" ]; then
   [ $(tput cols) -ge 84 ] && fastfetch
 fi
 
-alias ls='ls -a --color=auto'
-alias grep='grep --color=auto'
-alias v='nvim'
-alias rk='sudo systemctl restart keyd'
-PS1='[\u@\h \W]\$ '
-
+# Aliases and functions
 gaa() {
   git add .
   git commit -m "$1"
   git push
 }
+
+alias ls='ls -a --color=auto'
+alias grep='grep --color=auto'
+alias v='nvim'
+PS1='[\u@\h \W]\$ '
+

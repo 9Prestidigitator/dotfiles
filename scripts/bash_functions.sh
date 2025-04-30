@@ -26,6 +26,25 @@ sys_reboot() {
   esac
 }
 
+ensure_in_dir() {
+  local target_dir="${1:-"/home/$SUDO_USER/dotfiles/"}"
+  # Expand ~ to full home path
+  target_dir="${target_dir/#\~/$HOME}"
+  # Resolve both paths to avoid mismatch from symlinks, etc.
+  local current_dir
+  current_dir="$(realpath "$PWD")"
+  local resolved_target
+  resolved_target="$(realpath "$target_dir")"
+  if [[ "$current_dir" != "$resolved_target" ]]; then
+    greentext "Changing directory to: $resolved_target"
+    cd "$resolved_target" || {
+      redtext "Error: Could not change to $resolved_target"
+      return 1
+    }
+  else
+  fi
+}
+
 # Generate bold green user prompt
 prompt() {
   local text="$1"
@@ -45,6 +64,22 @@ prompt_run() {
   else
     echo -en "\nAborted.\n" >&2
     echo "0"
+  fi
+}
+
+detect_gpu() {
+  local gpu_info
+  gpu_info=$(lspci | grep VGA)
+  if echo "$gpu_info" | grep -iq "nvidia"; then
+    echo "NVIDIA"
+  elif echo "$gpu_info" | grep -iq "amd"; then
+    echo "AMD"
+  elif echo "$gpu_info" | grep -iq "intel"; then
+    echo "Intel"
+  elif echo "$gpu_info" | grep -eq "Virtio"; then
+    echo "Virtio"
+  else
+    echo "Unknown"
   fi
 }
 
@@ -75,42 +110,3 @@ root_check() {
   fi
 }
 
-detect_gpu() {
-  local gpu_info
-  gpu_info=$(lspci | grep VGA)
-
-  if echo "$gpu_info" | grep -iq "nvidia"; then
-    echo "NVIDIA"
-  elif echo "$gpu_info" | grep -iq "amd"; then
-    echo "AMD"
-  elif echo "$gpu_info" | grep -iq "intel"; then
-    echo "Intel"
-  elif echo "$gpu_info" | grep -eq "Virtio"; then
-    echo "Virtio"
-  else
-    echo "Unknown"
-  fi
-}
-
-ensure_in_dir() {
-  local target_dir="${1:-"/home/$SUDO_USER/dotfiles/"}"
-
-  # Expand ~ to full home path
-  target_dir="${target_dir/#\~/$HOME}"
-
-  # Resolve both paths to avoid mismatch from symlinks, etc.
-  local current_dir
-  current_dir="$(realpath "$PWD")"
-  local resolved_target
-  resolved_target="$(realpath "$target_dir")"
-
-  if [[ "$current_dir" != "$resolved_target" ]]; then
-    greentext "Changing directory to: $resolved_target"
-    cd "$resolved_target" || {
-      redtext "Error: Could not change to $resolved_target"
-      return 1
-    }
-  else
-    greentext "Already in $resolved_target"
-  fi
-}
