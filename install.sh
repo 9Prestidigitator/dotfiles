@@ -10,7 +10,7 @@ echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
 echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
 
 # Install AUR helper
-aur=$(prompt_run "Install paru (AUR helper)?" ./scripts/arch/install_paru.sh)
+aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/install_paru.sh)
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install X11/dwm

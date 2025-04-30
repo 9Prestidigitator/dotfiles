@@ -74,11 +74,10 @@ touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >>/etc/modules-load
 usermod -aG realtime $SUDO_USER
 
 # Battery utils for laptops:
-prompt_run "Using a laptop?" $(pinn tlp && systemctl enable --now tlp)
+prompt_run "Using a laptop?" pinn tlp && systemctl enable --now tlp
 
 # Installation of keyd
-prompt_run "Install keyd" $(pinn keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf)
-# pacman -S --noconfirm --needed keyd
+prompt_run "Install keyd" pinn keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 
 # feh --bg-fill ./imgs/wallpaper.jpg
