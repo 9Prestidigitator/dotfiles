@@ -88,7 +88,7 @@ detect_gpu() {
 }
 
 ensure_in_dir() {
-  local target_dir="${1:-"~/dotfiles/"}"
+  local target_dir="${1:-"/home/$SUDO_USER/dotfiles/"}"
 
   # Expand ~ to full home path
   target_dir="${target_dir/#\~/$HOME}"
