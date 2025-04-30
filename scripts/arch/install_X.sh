@@ -56,7 +56,7 @@ pacman -S --noconfirm --needed ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-f
 
 # Installing and configuring security packages
 pacman -S --noconfirm --needed ufw fail2ban openssh
-# sudo systemctl enable ufw
+systemctl enable ufw
 
 # Installing and configuring audio stuff
 pacman -S --noconfirm --needed pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol
