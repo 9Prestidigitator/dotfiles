@@ -12,7 +12,7 @@ echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linu
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install X11/dwm
-dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/build_sl.sh)
+dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
 
 # Need some sort of display server for best experience:
 if [[ $dwm_build -eq 1 ]]; then

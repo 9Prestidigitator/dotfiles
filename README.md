@@ -18,7 +18,7 @@ Run the install.sh script as a super user inside the dotfiles github directory d
 ```bash
 sudo pacman -S git
 ```
-2. Clone the repo:
+2. Clone the repo in your home directory:
 ```bash
 git clone https://github.com/9Prestidigitator/dotfiles.git
 ```
