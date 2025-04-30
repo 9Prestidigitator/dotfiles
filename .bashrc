@@ -21,5 +21,7 @@ alias rk='sudo systemctl restart keyd'
 PS1='[\u@\h \W]\$ '
 
 gaa() {
-  eval "git add .;git commit -m '$1';"
+  git add .
+  git commit -m $1
+  git push
 }
