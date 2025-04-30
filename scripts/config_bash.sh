@@ -5,16 +5,16 @@ root_check
 ensure_in_dir
 
 # Adding config files
-cp -f ./.xinitrc $HOME/.xinitrc
-cp -fr ./configs/fastfetch $HOME/.config/
+cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
+cp -fr ./configs/fastfetch /home/$SUDO_USER/.config/
 
 default_bashrc=$'#\n# ~/.bashrc\n#'
 bashrc_header=$(head -n 3 /home/$SUDO_USER/.bashrc || true)
 
 if [[ "$default_bashrc" == "$bashrc_header" ]]; then
   bluetext "default bashrc found, replacing with my own."
-  customrc="#\n# ~/.bashrc (system)\n#\n\nif [[ -f "$HOME/dotfiles/.bashrc" ]]; then\nsource~/dotfiles/.bashrc\nfi\n"
-  cp -f $customrc $HOME/.bashrc
+  customrc="#\n# ~/.bashrc (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\nsource~/dotfiles/.bashrc\nfi\n"
+  cp -f $customrc /home/$SUDO_USER/.bashrc
 fi
 
 cp -f ./.bash_profile /home/$SUDO_USER/.bash_profile
