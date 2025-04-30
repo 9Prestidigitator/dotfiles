@@ -6,6 +6,8 @@ gitupdate
 
 ensure_in_dir
 
+echo -e "\n${BLUE}${BOLD}--- Updating dotfiles ---${RESET}\n"
+
 prompt_run "Want to update repository?" git pull https://github.com/9Prestidigitator/dotfiles.git
 
 root_check

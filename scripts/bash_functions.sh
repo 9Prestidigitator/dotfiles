@@ -44,11 +44,16 @@ ensure_in_dir() {
   fi
 }
 
-# Generate bold green user prompt
+# Generate user prompt with multiple choice
 prompt() {
   local text="$1"
+  local color="${2:-1}"
   local user_input
-  read -p "$(echo -en "\n${GREEN}${BOLD}$text ${RESET}\n")" -rn 1 user_input
+  if [[ $color == 1 ]]; then
+    read -p "$(echo -en "\n${GREEN}${BOLD}$text ${RESET}\n")" -rn 1 user_input
+  elif [[ $color == 2 ]]; then
+    read -p "$(echo -en "\n${BOLD}$text ${RESET}\n")" -rn 1 user_input
+  fi
   echo "$user_input"
 }
 
