@@ -5,5 +5,5 @@ cd ../dmenu/ && make clean install
 echo -e "\n${GREEN}${BOLD}Building st.${RESET}\n"
 cd ../st && make clean install
 echo -e "\n${GREEN}${BOLD}Building slstatus.${RESET}\n"
-cd ../slstatus/ && make clean install
+cd ../slstatus/ && make clean install && cd ../..
 echo -e "\n${YELLOW}Reboot required to take effect.${RESET}\n"
