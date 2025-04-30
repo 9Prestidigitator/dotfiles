@@ -53,9 +53,59 @@ boldbluetext() {
   echo -en "\n${BLUE}${BOLD}$text ${RESET}\n"
 }
 
+greentext() {
+  local text="$1"
+  echo -en "\n${GREEN}$text ${RESET}\n"
+}
+
+redtext() {
+  local text="$1"
+  echo -en "\n${GREEN}$text ${RESET}\n"
+}
+
 root_check() {
   if [[ $EUID -ne 0 ]]; then
     echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
     sudo -v
+  fi
+}
+
+detect_gpu() {
+  local gpu_info
+  gpu_info=$(lspci | grep VGA)
+
+  if echo "$gpu_info" | grep -iq "nvidia"; then
+    echo "NVIDIA"
+  elif echo "$gpu_info" | grep -iq "amd"; then
+    echo "AMD"
+  elif echo "$gpu_info" | grep -iq "intel"; then
+    echo "Intel"
+  elif echo "$gpu_info" | grep -eq "Virtio"; then
+    echo "Virtio"
+  else
+    echo "Unknown"
+  fi
+}
+
+ensure_in_dir() {
+  local target_dir="${1:-"~/dotfiles/"}"
+
+  # Expand ~ to full home path
+  target_dir="${target_dir/#\~/$HOME}"
+
+  # Resolve both paths to avoid mismatch from symlinks, etc.
+  local current_dir
+  current_dir="$(realpath "$PWD")"
+  local resolved_target
+  resolved_target="$(realpath "$target_dir")"
+
+  if [[ "$current_dir" != "$resolved_target" ]]; then
+    greentext "Changing directory to: $resolved_target"
+    cd "$resolved_target" || {
+      redtext "Error: Could not change to $resolved_target"
+      return 1
+    }
+  else
+    greentext "Already in $resolved_target"
   fi
 }
