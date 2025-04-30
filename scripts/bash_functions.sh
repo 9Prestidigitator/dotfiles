@@ -63,6 +63,11 @@ redtext() {
   echo -en "\n${GREEN}$text ${RESET}\n"
 }
 
+bluetext() {
+  local text="$1"
+  echo -en "\n${BLUE}$text ${RESET}\n"
+}
+
 root_check() {
   if [[ $EUID -ne 0 ]]; then
     echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"

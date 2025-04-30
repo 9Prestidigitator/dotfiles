@@ -30,7 +30,8 @@ pacman -S --noconfirm --needed base-devel xorg-server xorg-xinit xorg-xset libx1
 ./scripts/build_sl.sh
 
 # Extra X11 packages: slock is a basic lock screen, feh is background manager, picom is effects manager, starship is terminal assistant, keyd is keyboard manager
-pacman -S --noconfirm --needed xorgproto xorg-xrandr autorandr xorg-xev xf86-input-evdev xf86-video-qxl mesa-utils brightnessctl slock maim xclip feh picom keyd
+pacman -S --noconfirm --needed xorgproto xorg-xrandr autorandr xorg-xev xf86-input-evdev xf86-video-qxl mesa-utils brightnessctl slock maim xclip feh picom 
+cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
 
 # Configure bash stuff
 pacman -S --noconfirm --needed starship fastfetch 
@@ -39,11 +40,14 @@ pacman -S --noconfirm --needed starship fastfetch
 gpud=$(detect_gpu)
 if [[ $gpud -eq "Intel" ]]; then
   # Intel graphics requirements
+  bluetext "Intel graphics detected..."
   pacman -S --noconfirm --needed mesa libva-intel-driver libvdpau-va-gl vulkan-intel
 elif [[ $gpud -eq "AMD" ]]; then
   # AMD graphics requirements
+  redtext "AMD graphics detected..."
   pacman -S --noconfirn --needed mesa xf86-video-amdgpu vulkan-radeon libva-mesa-driver libvdpau-va-gl
 elif [[ $gpud -eq "NVIDIA" ]]; then
+  greentext "Nvidia graphics detected...more work required"
   # Nvidia graphics requirements
   pacman -S --noconfirm --needed nvidia nvidia-utils nvidia-settings
 elif [[ $gpud -eq "Virtio" ]]; then
@@ -62,16 +66,19 @@ systemctl enable ufw
 pacman -S --noconfirm --needed pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol
 # dev/mixer is really old so got to load snd_pcm_oss module manually
 touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >>/etc/modules-load.d/modules.conf
-
+# WIP: Need to find out how to make systemctl calls but these need to be made:
+# systemctl enable --now pipewire
+# systemctl enable --now pipewire-pulse
+# systemctl enable --now wireplumber
+# Supposedly adding the user to the realtime group improves audio latency performance
 usermod -aG realtime $SUDO_USER
 
-# WIP: Need to find out how to make systemctl calls but these need to be made:
-# sudo -u $SUDOUSER systemctl --user enable --now pipewire
-# sudo -u $SUDOUSER systemctl --user enable --now pipewire-pulse
-# sudo -u $SUDOUSER systemctl --user enable --now wireplumber
+# Battery utils for laptops:
+prompt_run "Using a laptop?" $(pinn tlp && systemctl enable --now tlp)
 
-# WIP: These commands cause issues apparently
+# Installation of keyd
+prompt_run "Install keyd" $(pinn keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf)
+# pacman -S --noconfirm --needed keyd
 # cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 
-cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
 # feh --bg-fill ./imgs/wallpaper.jpg

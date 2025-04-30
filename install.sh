@@ -9,11 +9,12 @@ ensure_in_dir
 echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
 echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
 
+# Install AUR helper
+aur=$(prompt_run "Install paru (AUR helper)?" ./scripts/arch/install_paru.sh)
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 # Install X11/dwm
 dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
-
 # Need some sort of display server for best experience:
 if [[ $dwm_build -eq 1 ]]; then
   # Install terminal emulator: Alacritty
