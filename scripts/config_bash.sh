@@ -14,6 +14,8 @@ bashrc_header=$(head -n 3 /home/$SUDO_USER/.bashrc || true)
 if [[ "$default_bashrc" == "$bashrc_header" ]]; then
   bluetext "Default bashrc found, replacing with my own."
   customrc=$"#\n# ~/.bashrc (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\n\tsource ~/dotfiles/.bashrc\nfi\n"
+else
+  echo -e "\nContains modular bashrc.\n"
 fi
 
 # Installing custom ~/.bash_profile
@@ -24,4 +26,6 @@ if [[ "$default_bash_prof" == "$bash_prof_header" ]]; then
   customprof=$"#\n# ~/.bash_profile (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\n\tsource ~/dotfiles/.bash_profile\nfi\n"
   cp /home/$SUDO_USER/.bash_profile /home/$SUDO_USER/.bash_profile.bak
   printf "%b" "$customprof" >/home/$SUDO_USER/.bash_profile
+else
+  echo -e "\nContains modular bash_profile.\n"
 fi

@@ -89,7 +89,7 @@ detect_gpu() {
     echo "AMD"
   elif echo "$gpu_info" | grep -iq "intel"; then
     echo "Intel"
-  elif echo "$gpu_info" | grep -eq "Virtio"; then
+  elif echo "$gpu_info" | grep -iq "Virtio"; then
     echo "Virtio"
   else
     echo "Unknown"
