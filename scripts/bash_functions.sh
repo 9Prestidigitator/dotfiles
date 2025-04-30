@@ -71,6 +71,15 @@ prompt_run() {
   fi
 }
 
+# Check if the script user is in root
+root_check() {
+  if [[ $EUID -ne 0 ]]; then
+    echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
+    sudo -v
+  fi
+}
+
+# Detects the GPU
 detect_gpu() {
   local gpu_info
   gpu_info=$(lspci | grep VGA)
@@ -92,19 +101,20 @@ boldbluetext() {
   echo -en "\n${BLUE}${BOLD}$text ${RESET}\n"
 }
 
-greentext() {
+bluetext() {
   local text="$1"
-  echo -en "\n${GREEN}$text ${RESET}\n"
+  echo -en "\n${BLUE}$text ${RESET}\n"
+}
+
+greentext() {
+  echo -en "\n${GREEN}$1 ${RESET}\n"
 }
 
 redtext() {
-  local text="$1"
-  echo -en "\n${GREEN}$text ${RESET}\n"
+  echo -en "\n${GREEN}$1 ${RESET}\n"
 }
 
-root_check() {
-  if [[ $EUID -ne 0 ]]; then
-    echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
-    sudo -v
-  fi
+yellowtext() {
+  echo -en "\n${YELLOW}$1 ${RESET}\n"
 }
+
