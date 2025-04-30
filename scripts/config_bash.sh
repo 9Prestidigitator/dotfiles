@@ -13,8 +13,10 @@ bashrc_header=$(head -n 3 /home/$SUDO_USER/.bashrc || true)
 
 if [[ "$default_bashrc" == "$bashrc_header" ]]; then
   bluetext "default bashrc found, replacing with my own."
-  customrc="#\n# ~/.bashrc (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\nsource~/dotfiles/.bashrc\nfi\n"
-  mv -f $customrc /home/$SUDO_USER/.bashrc
+  customrc=$"#\n# ~/.bashrc (system)\n#\n\nif [[ -f "/home/$SUDO_USER/dotfiles/.bashrc" ]]; then\nsource~/dotfiles/.bashrc\nfi\n"
+
+  cp /home/$SUDO_USER/.bashrc /home/$SUDO_USER/.bashrc.bak
+  printf "%b" "$customrc" > /home/$SUDO_USER/.bashrc
 fi
 
 cp -f ./.bash_profile /home/$SUDO_USER/.bash_profile

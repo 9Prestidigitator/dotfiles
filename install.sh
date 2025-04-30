@@ -18,7 +18,7 @@ dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
 # Need some sort of display server for best experience:
 if [[ $dwm_build -eq 1 ]]; then
   # Install terminal emulator: Alacritty
-  prompt_run "Configure and install Alacritty?" ./scripts/arch/install_alacritty.sh
+  ./scripts/arch/install_alacritty.sh
   # Install basic gui applications
   prompt_run "Install basic GUI applications?" ./scripts/arch/install_gui_basic.sh
   # Install DAW and other audio packages
