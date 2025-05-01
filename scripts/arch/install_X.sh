@@ -33,10 +33,6 @@ pinn base-devel xorg-server xorg-xinit xorg-xset libx11 libxft libxinerama fontc
 pinn xorgproto xorg-xrandr autorandr xorg-xev xf86-input-evdev xf86-video-qxl mesa-utils brightnessctl slock maim xclip feh picom 
 cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
 
-# Configure bash stuff
-pinn starship fastfetch 
-./scripts/config_bash.sh
-
 gpud=$(detect_gpu)
 if [[ $gpud -eq "Intel" ]]; then
   # Intel graphics requirements

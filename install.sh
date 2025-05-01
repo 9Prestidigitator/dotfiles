@@ -9,6 +9,9 @@ ensure_in_dir
 echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
 echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
 
+# Configure bash stuff
+pinn starship fastfetch tmux 
+./scripts/config_bash.sh
 # Install AUR helper
 aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/install_paru.sh)
 # Install main editor: Neovim
