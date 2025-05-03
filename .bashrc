@@ -23,6 +23,7 @@ gaa() {
 
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
-alias v='nvim 2>/dev/null || vim'
+[[ -x $(command -v vim) ]] && alias v='vim'
+[[ -x $(command -v nvim) ]] && alias v='nvim'
 PS1='[\u@\h \W]\$ '
 
