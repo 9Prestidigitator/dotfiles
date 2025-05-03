@@ -11,5 +11,5 @@ gitupdate() {
 }
 
 pinn() {
-  pacman -S --noconfirm --needed "$1"
+  pacman -S --noconfirm --needed "$@"
 }
