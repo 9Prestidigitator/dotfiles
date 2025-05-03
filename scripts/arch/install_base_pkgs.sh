@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 
