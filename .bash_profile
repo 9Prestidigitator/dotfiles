@@ -33,7 +33,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
 
   # Countdown with prompt
   echo
-  echo -n "Enter choice (1-${#sessions[@]}) within "
+  echo -n "Enter choice (0-${#sessions[@]}) within "
 
   choice=""
   for ((i = 5; i > 0; i--)); do
