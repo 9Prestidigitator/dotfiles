@@ -36,4 +36,4 @@ touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >>/etc/modules-load
 usermod -aG realtime $SUDO_USER
 
 # Battery utils for laptops:
-prompt_run "Using a laptop?" pinn tlp && systemctl enable --now tlp
+prompt_run "Using a laptop?" (pinn tlp && systemctl enable --now tlp)
