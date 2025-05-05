@@ -19,13 +19,16 @@ elif [[ "$gpud" == "NVIDIA" ]]; then
   # Nvidia graphics requirements
   pinn nvidia nvidia-utils nvidia-settings
 elif [[ "$gpud" == "Virtio" ]]; then
-  echo "Virtio graphics detected..."
+  echo -e "\nVirtio graphics detected...\n"
   # Virtio graphics requirements
   pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa mesa
 fi
 
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
+
+# Installation of keyd, a really fast keyboard manager
+prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 
 # Installing and configuring security packages
 pinn ufw fail2ban openssh

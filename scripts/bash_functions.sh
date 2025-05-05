@@ -117,4 +117,3 @@ redtext() {
 yellowtext() {
   echo -en "\n${YELLOW}$1 ${RESET}\n"
 }
-
