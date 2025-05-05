@@ -70,7 +70,7 @@ static const struct arg args[] = {
 	/* { def_vol_perc,  "🔊[%s%%]",    NULL}, */
 	{ vol_perc,  "  [%s%%]",    "/dev/mixer"},
 	// { cpu_perc, " CPU:%s%%",     NULL    },
-	// { ram_perc, " 🐏[%s%%]",     NULL    },
+	// { ram_perc, "  [%s%%]",     NULL    },
 	{ battery_perc, " 󱊣[%s%%]", "BAT1"  },
 	// { swap_perc," SWP:%s%%",     NULL    }, // Swap percentage used
 	{ datetime, " [%s] ",           "%H:%M %m-%d-%y" },

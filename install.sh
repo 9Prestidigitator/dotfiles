@@ -17,10 +17,12 @@ pinn starship fastfetch tmux
 aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/install_paru.sh)
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
+
 # Install X11/dwm
 dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
 # Install Walyland/Hyprland
-hypr_build=$(prompt_run "Install Wayland/Hypr?" ./scripts/arch/install_wayland.sh)
+hypr_build=$(prompt_run "Install Wayland/Hypr?" ./scripts/arch/install_hypr.sh)
+
 # Need some sort of display server for best experience:
 if [[ $dwm_build -eq 1 || $hypr_build -eq 1 ]]; then
   # Install terminal emulator: Alacritty

@@ -32,8 +32,3 @@ else
   echo -e "\nContains modular bash_profile.\n"
 fi
 
-mkdir -p ~/.local/bin
-cp ./update.sh ~/.local/bin/update-dotfiles
-chmod +x ~/.local/bin/update-dotfiles
-
-

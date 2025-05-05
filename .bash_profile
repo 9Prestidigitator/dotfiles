@@ -5,15 +5,20 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 startx11() {
-    # X11 env variables
-    export GDK_SCALE=2 # Use this to increase most GUI app scale
-    export GDK_DPI_SCALE=1
-    export QT_SCALE_FACTOR=2
-    export QT_AUTO_SCREEN_SCALE_FACTOR=0
-    GTK_THEME=Adwaita:dark
-    export XCURSOR_THEME=capitaine-cursors
-    # export XCURSOR_SIZE=36 # The auto-setter for this is p good
-    exec startx
+  # X11 env variables
+  export GDK_SCALE=2 # Use this to increase most GUI app scale
+  export GDK_DPI_SCALE=1
+  export QT_SCALE_FACTOR=2
+  export QT_AUTO_SCREEN_SCALE_FACTOR=0
+  GTK_THEME=Adwaita:dark
+  export XCURSOR_THEME=capitaine-cursors
+  # export XCURSOR_SIZE=36 # The auto-setter for this is p good
+  exec startx
+}
+
+startway() {
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+  exec Hyprland
 }
 
 # Only run on TTY1 through TTY9, and only if not in a graphical session
@@ -58,7 +63,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
     ;;
   2)
     echo "Starting Hyprland..."
-    exec Hyprland
+    startway
     ;;
   *)
     echo "No input or invalid selection. Starting default (X11/dwm)..."
