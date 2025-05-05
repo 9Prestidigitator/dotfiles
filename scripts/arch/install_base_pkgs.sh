@@ -19,9 +19,9 @@ elif [[ "$gpud" == "NVIDIA" ]]; then
   # Nvidia graphics requirements
   pinn nvidia nvidia-utils nvidia-settings
 elif [[ "$gpud" == "Virtio" ]]; then
-  echo "Virtio graphics detected...more work required"
+  echo "Virtio graphics detected..."
   # Virtio graphics requirements
-  pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa
+  pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa mesa
 fi
 
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
