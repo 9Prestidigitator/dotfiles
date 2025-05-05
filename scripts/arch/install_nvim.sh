@@ -5,4 +5,4 @@ root_check
 
 pacman -S --noconfirm --needed neovim npm python
 prompt_run "Install necessary latex packages?" pacman -S --needed --noconfirm zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science
-mkdir -p ~/.config/nvim && cp -fr ./configs/nvim /home/$SUDO_USER/.config/
+cp -fr ./configs/nvim /home/$SUDO_USER/.config/
