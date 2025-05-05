@@ -9,6 +9,8 @@ ensure_in_dir
 echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
 echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
 
+
+
 # Configure bash stuff
 pinn starship fastfetch tmux 
 ./scripts/config_bash.sh
@@ -18,6 +20,7 @@ aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/
 # Install main editor: Neovim
 nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
 
+# WINDOW MANAGERS:
 # Install X11/dwm
 dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
 # Install Walyland/Hyprland
