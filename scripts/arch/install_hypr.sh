@@ -6,5 +6,5 @@ ensure_in_dir
 
 pinn hyprland hyprpaper waybar wofi hyprlock wlr-randr wl-clipboard hypridle
 
-cp -r ./configs/hypr ~/.config && cp -r ./configs/wofi ~/.config && cp -r ./configs/waybar ~/.config
+cp -fr ./configs/hypr /home/$SUDO_USER/.config && cp -fr ./configs/wofi /home/$SUDO_USER/.config && cp -r ./configs/waybar ~/.config
 
