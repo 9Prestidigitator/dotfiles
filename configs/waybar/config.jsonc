@@ -8,6 +8,7 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
+        "hyprland/submap",
         "hyprland/window"
     ],
     "modules-center": [
@@ -20,7 +21,7 @@
         "pulseaudio",
         //"cpu",
         //"memory",
-        "keyboard-state",
+        // "keyboard-state",
         "power-profiles-daemon",
         "battery",
         "battery#bat2",
@@ -40,48 +41,51 @@
     },
 
     "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "show-special": true,
-        "format-special": "🪄"
+      "format": "{icon} {windows}",
+      "disable-scroll": true,
+      "all-outputs": false,
+      "active-only": false,
+      "show-special": true,
+      "special-visible-only": true,
+      "persistent-workspaces": {
+      },
+      "format-icons": {
+          "urgent": "",
+          "magic": " ",
+          "magic_alt": " "
+      },
+      "sort-by-number": true,
+      "window-rewrite-default": "󰣆",
+      "window-rewrite": {
+        "class<alacritty>": "",
+        "class<org.gnome.Nautilus>": "",
+        "class<org.kde.dolphin>": "󱢴",
+        "class<firefox>": "",
+        "class<chrome>": "",
+        "class<brave>": "",
+        "class<.*browser.*>": "",
+        "class<.*python.*>": "",
+        "class<steam>": "",
+        "class<discord>": "",
+        "class<spotify>": "",
+        "class<REAPER>": "󰋆",
+        "class<mpv>": "",
+        "class<Signal>": "󰻞",
+        "class<virt-manager>": "",
+        "class<org.pwt.zathura>": "󰈙",
+        "class<.*pavu.*>": "󱡫",
+        "title<.*youtube.*>": "",
+        "title<.*github.*>": "",
+        // "class<firefox> title<.*github.*>": "  ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+        "code": " 󰨞 ",
+        "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output
+      }
     },
 
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+    "hyprland/window": {
+      // "icon":true,
+      "icon":false,
+      "icon-size":16
     },
 
     "idle_inhibitor": {
@@ -90,6 +94,11 @@
             "activated": " ",
             "deactivated": " "
         }
+    },
+
+    "hyprland/submap": {
+        "format": "{}",
+        "tooltip": false
     },
 
     "tray": {

@@ -1,10 +1,13 @@
+![hyprland with rofi](.imgs/readme/readme1.png)
+
 # My Arch/Debian package configurations
-My custom configuration for dwm, neovim, and various other programs I use regularly.
+My custom configuration for hyprland, dwm, neovim, and various other programs I use regularly.
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Configs](#configs)
+    - [hyprland](#hyprland)
     - [dwm](#dwm)
     - [nvim](#neovim)
     - [Reaper](#reaper)
@@ -34,6 +37,9 @@ Warning: This script is intended for a fresh install of Arch Linux, this may cau
 
 ## Configs
 You will see configurations for individual programs in the ./configs folder. If you just want my program configurations you can copy or create a symlink.
+
+### hyprland
+```bash MODKEY``` is set to the windows key by default.
 
 ### dwm
 

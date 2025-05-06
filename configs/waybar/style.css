@@ -16,17 +16,21 @@ window#waybar {
   all: unset;
   background: transparent;
   padding: 0px 6px;
-  color: #504945;
+}
+
+#workspaces button label {
+  color: #453f3b;
 }
 
 #workspaces button.active label {
   color: white; /* white text for the active workspace */
 }
 
-#workspaces button label {
-  color: #ADADAD;
+#workspaces button.special label {
+  color: #5C544F; /* white text for the active workspace */
 }
 
-/* #pulseaudio { */
-/* 	color: #8ec07c; */
-/* } */
+#workspaces button.special.active label {
+  color: white; /* white text for the active workspace */
+}
+
