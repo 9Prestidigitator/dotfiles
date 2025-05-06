@@ -3,7 +3,7 @@ set -e
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 
-pinn brightnessctl
+pinn brightnessctl timeshift
 
 gpud=$(detect_gpu)
 if [[ "$gpud" == "Intel" ]]; then

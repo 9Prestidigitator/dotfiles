@@ -23,7 +23,6 @@ startway() {
 
 # Only run on TTY1 through TTY9, and only if not in a graphical session
 if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
-
   declare -A sessions
 
   # Dynamically build available options
@@ -31,7 +30,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
   [[ -x $(command -v startx) ]] && sessions["1"]="X11 (dwm)"
   [[ -x $(command -v Hyprland) ]] && sessions["2"]="Wayland (Hyprland)"
 
-  echo "Select a session to start (default: X11):"
+  echo -e "\n\e[4m\e[1mSelect a session to start:\033[0m"
   for i in "${!sessions[@]}"; do
     echo "  [$i] ${sessions[$i]}"
   done
@@ -42,7 +41,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
 
   choice=""
   for ((i = 5; i > 0; i--)); do
-    echo -ne "\rEnter choice (1-${#sessions[@]}) within $i seconds: "
+    echo -ne "\rEnter choice (0-${#sessions[@]}) within $i seconds: "
     read -t 1 -n 1 choice
     if [[ -n $choice ]]; then
       echo # Move to new line after key press
@@ -66,7 +65,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
     startway
     ;;
   *)
-    echo "No input or invalid selection. Starting default (X11/dwm)..."
+    echo "No input or invalid selection. Starting default..."
     startx11
     ;;
   esac
