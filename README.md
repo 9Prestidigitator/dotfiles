@@ -1,4 +1,5 @@
-![hyprland with rofi](https://github.com/9Prestidigitator/dotfiles/imgs/readme/readme1.png)
+<!-- ![hyprland with rofi](https://github.com/9Prestidigitator/dotfiles/imgs/readme/readme1.png) -->
+![hyprland with rofi](imgs/readme/readme1.png)
 
 # My Arch/Debian package configurations
 My custom configuration for hyprland, dwm, neovim, and various other programs I use regularly.
