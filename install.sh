@@ -20,6 +20,7 @@ continue_prompt
 pinn starship fastfetch tmux 
 ./scripts/config_bash.sh
 ./scripts/arch/install_base_pkgs.sh
+
 # Install AUR helper
 aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/install_paru.sh)
 # Install main editor: Neovim

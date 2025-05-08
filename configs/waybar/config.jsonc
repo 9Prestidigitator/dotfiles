@@ -73,6 +73,7 @@
         "class<Signal>": "󰻞",
         "class<virt-manager>": "",
         "class<.*Timeshift.*>": "󰁯",
+        "class<.*wine.*>": "󰡶",
         "class<org.pwt.zathura>": "󰈙",
         "class<.*pavu.*>": "󱡫",
         "class<.*QjackCtl.*>": "󱡭",
