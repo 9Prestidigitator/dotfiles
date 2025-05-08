@@ -3,6 +3,6 @@ source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 root_check
 
-pacman -S --noconfirm --needed neovim npm python
+pacman -S --noconfirm --needed neovim npm python nodejs
 prompt_run "Install necessary latex packages?" pacman -S --needed --noconfirm zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science
 cp -fr ./configs/nvim /home/$SUDO_USER/.config/

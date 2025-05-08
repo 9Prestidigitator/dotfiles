@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 28, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -72,10 +72,13 @@
         "class<mpv>": "",
         "class<Signal>": "󰻞",
         "class<virt-manager>": "",
+        "class<.*Timeshift.*>": "󰁯",
         "class<org.pwt.zathura>": "󰈙",
         "class<.*pavu.*>": "󱡫",
+        "class<.*QjackCtl.*>": "󱡭",
         "title<.*youtube.*>": "",
         "title<.*github.*>": "",
+        "title<.*Picture-in-Picture.*>": "",
         // "class<firefox> title<.*github.*>": "  ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
         "code": " 󰨞 ",
         "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output

@@ -4,4 +4,4 @@ source ./scripts/arch/paccmds.sh
 root_check
 pacupdate
 
-pacman -S reaper
+pacman -S reaper qjackctl

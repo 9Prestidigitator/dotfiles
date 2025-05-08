@@ -96,6 +96,22 @@ detect_gpu() {
   fi
 }
 
+continue_prompt() {
+  read -p $'\nContinue? (y/n):\n ' yn
+  case "$yn" in
+  [Yy]*) echo "Continuing..." ;;
+  [Nn]*)
+    echo -e "Aborted."
+    exit 1
+    ;;
+  *)
+    echo -e "Invalid input."
+    exit 1
+    ;;
+  esac
+
+}
+
 boldbluetext() {
   local text="$1"
   echo -en "\n${BLUE}${BOLD}$text ${RESET}\n"
