@@ -27,7 +27,7 @@ window#waybar {
 }
 
 #workspaces button.special label {
-  color: #5C544F; /* white text for the active workspace */
+  color: #453f3b; /* #5C544F */
 }
 
 #workspaces button.special.active label {
