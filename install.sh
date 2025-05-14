@@ -6,18 +6,19 @@ pacupdate
 gitupdate
 ensure_in_dir
 
+clear
 pinn figlet
 echo -e $"${BLUE}"
 figlet -f slant -c \< dotfiles \>
 echo -e $"${RESET}"
 
 echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
-echo -e "${RED}Warning: This script is designed for a fresh isntall of Arch Linux.${RESET}\n"
+echo -e "${RED}Warning: This script is designed for a fresh install of Arch Linux.${RESET}\n"
 
 continue_prompt
 
 # Configure bash stuff
-pinn starship fastfetch tmux 
+pinn tmux starship fastfetch tmux 
 ./scripts/config_bash.sh
 ./scripts/arch/install_base_pkgs.sh
 

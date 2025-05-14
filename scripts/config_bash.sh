@@ -6,6 +6,7 @@ ensure_in_dir
 
 # Adding config files
 cp -f ./.xinitrc /home/$SUDO_USER/.xinitrc
+cp -f ./configs/tmux/.tmux.conf /home/$SUDO_USER/.tmux.conf
 cp -fr ./configs/fastfetch /home/$SUDO_USER/.config/
 
 # Installing custom ~/.bashrc
