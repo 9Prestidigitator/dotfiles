@@ -1,48 +1,35 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
+
+source ./scripts/checklist.sh
 source ./scripts/bash_functions.sh
-source ./scripts/arch/paccmds.sh
-root_check
-pacupdate
-gitupdate
-ensure_in_dir
 
-clear
-pinn figlet
-echo -e $"${BLUE}"
-figlet -f slant -c \< dotfiles \>
-echo -e $"${RESET}"
+main() {
+    # Start the option menu
+    enable_raw_mode
+    trap disable_raw_mode EXIT INT TERM
+    while true; do
+        render_menu
+        if ! handle_input; then
+            break
+        fi
+    done
 
-echo -e "\n${BLUE}${ULINE}${BOLD}WELCOME TO MY DOTFILES INSTALL SCRIPT!${RESET}"
-echo -e "${RED}Warning: This script is designed for a fresh install of Arch Linux.${RESET}\n"
+    # Confirmation of options
+    continue_prompt
+    # root_check
+    # sudo -v
+    gitupdate
 
-continue_prompt
+    # disable_raw_mode
+    # printf "\nSelections saved to %s\n" "$CONFIG_FILE"
+    # write_config
 
-# Configure bash stuff
-pinn tmux starship fastfetch tmux 
-./scripts/config_bash.sh
-./scripts/arch/install_base_pkgs.sh
+    [[ ${FLAGS[0]} == "on" ]] && echo "installing bash"
+    [[ ${FLAGS[1]} == "on" ]] && echo "installing nvim"
+    [[ ${FLAGS[2]} == "on" ]] && echo "installing paru"
+}
 
-# Install AUR helper
-aur=$(prompt_run "Install paru (AUR helper)?" sudo -u $SUDO_USER ./scripts/arch/install_paru.sh)
-# Install main editor: Neovim
-nvim=$(prompt_run "Configure NeoVIM?" ./scripts/arch/install_nvim.sh)
+main "$@"
 
-# WINDOW MANAGERS:
-# Install X11/dwm
-dwm_build=$(prompt_run "Install X11/dwm?" ./scripts/arch/install_X.sh)
-# Install Walyland/Hyprland
-hypr_build=$(prompt_run "Install Wayland/Hypr?" ./scripts/arch/install_hypr.sh)
-
-# Need some sort of display server for best experience:
-if [[ $dwm_build -eq 1 || $hypr_build -eq 1 ]]; then
-  # Install terminal emulator: Alacritty
-  ./scripts/arch/install_alacritty.sh
-  # Install basic gui applications
-  prompt_run "Install basic GUI applications?" ./scripts/arch/install_gui_basic.sh
-  # Install DAW and other audio packages
-  prompt_run "Install audio production packages?" ./scripts/arch/audio.sh
-  # Bonus: Install Virtual Machine: QEMU/KVM
-  prompt_run "Do you want to install VM (QEMU/KVM)?" ./scripts/arch/qemuKVM.sh
-fi
-
-sys_reboot

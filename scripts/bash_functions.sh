@@ -26,6 +26,41 @@ sys_reboot() {
   esac
 }
 
+detect_distro() {
+  local id_like
+  local distro
+
+  if [[ -r /etc/os-release ]]; then
+    # shellcheck disable=SC1091
+    source /etc/os-release
+
+    if [[ -n "${ID:-}" ]]; then
+      distro="$ID"
+    elif [[ -n "${ID_LIKE:-}" ]]; then
+      distro="$ID_LIKE"
+    else
+      printf "Unable to detect distribution ID.\n" >&2
+      return 1
+    fi
+  elif command -v lsb_release >/dev/null 2>&1; then
+    distro=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
+  elif [[ -f /etc/lsb-release ]]; then
+    distro=$(grep -i '^DISTRIB_ID=' /etc/lsb-release | cut -d= -f2 | tr '[:upper:]' '[:lower:]')
+  else
+    printf "Unsupported system: cannot detect distro.\n" >&2
+    return 1
+  fi
+
+  case "$distro" in
+  ubuntu | debian) printf "debian\n" ;;
+  arch | manjaro) printf "arch\n" ;;
+  fedora | rhel | centos) printf "redhat\n" ;;
+  opensuse*) printf "suse\n" ;;
+  alpine) printf "alpine\n" ;;
+  *) printf "unknown\n" ;;
+  esac
+}
+
 ensure_in_dir() {
   local target_dir="${1:-"/home/$SUDO_USER/dotfiles/"}"
   # Expand ~ to full home path
