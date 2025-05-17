@@ -14,35 +14,29 @@ My custom configuration for hyprland, dwm, neovim, and various other programs I 
     - [Reaper](#reaper)
 
 ## Introduction
-I currently have the installation scipt working for Arch linux. I plan to mainly use this for documentation in my Linux journey. And I do plan to have a Debian configuration eventually.
+I currently have the install scipt working for Arch linux. I plan to mainly use this for documentation in my Linux journey. And I do plan to have a Debian configuration eventually.
 
 ## Installation
-Run the install.sh script as a super user inside the dotfiles github directory directory.
-1. Use a fresh install of Arch Linux and install git:
-```bash
-sudo pacman -S git
-```
-2. Clone the repo in your home directory:
+1. Clone the repo in your **home directory**, like so
 ```bash
 git clone https://github.com/9Prestidigitator/dotfiles.git
 ```
-3. Change directory to the repository
+2. Change directory to the repository
 ```bash
 cd dotfiles
 ```
-4. run installation script (arch linux only for now):
+3. run installation script (Most configs are arch only for now):
 ```bash
-sudo ./install.sh
+./install
 ```
-Warning: This script is intended for a fresh install of Arch Linux, this may cause damage if it is not on a fresh Arch install.
+Warning: This script is quite destructive with the configuration of most of these packages. If you have existing configurations for these programs you may loose them.
 
 ## Configs
-You will see configurations for individual programs in the ./configs folder. If you just want my program configurations you can copy or create a symlink.
-
 ### hyprland
-```bash MODKEY``` is set to the windows key by default.
+```MODKEY``` is set to the windows key.
 
 ### dwm
+```MODKEY``` is set to the windows key.
 
 #### Keybindings
 ```bash MODKEY``` is set to the windows key by default.
@@ -77,6 +71,7 @@ You will see configurations for individual programs in the ./configs folder. If 
     - MODKEY + SHIFT + ,: Move window to previous monitor 
     - MODKEY + b: Toggle bar
 
-### nvim
+### Neovim
+Uses my neovim configuration github repository.
 
 ### Reaper

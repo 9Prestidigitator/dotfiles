@@ -25,7 +25,7 @@ ensure_in_dir() {
 
 main() {
   ensure_in_dir
-  source ./scripts/checklist.sh
+  source ./scripts/ui.sh
   source ./scripts/bash_functions.sh
   # Start the option menu
   enable_raw_mode
@@ -71,8 +71,8 @@ main() {
       [[ ${dwm} == "on" ]] && ./scripts/arch/install_X.sh
       ./scripts/arch/install_gui_basic.sh
     fi
-    [[ ${ProfessionalAudio} == "on" ]] && echo "Installing pro audio pkgs"
-    [[ ${VirtualMachine} == "on" ]] && echo "Installing Virtual Machine"
+    [[ ${ProfessionalAudio} == "on" ]] && ./scripts/arch/install_audio.sh
+    [[ ${VirtualMachine} == "on" ]] && ./scripts/arch/install_qemuKVM.sh
     [[ ${keyd} == "on" ]] && pinn keyd && sudo mkdir -p /etc/keyd && sudo cp -f ./configs/keyd/default.conf /etc/keyd/default.conf
     [[ ${LaptopSetup} == "on" ]] && ./scripts/arch/laptop.sh
 
