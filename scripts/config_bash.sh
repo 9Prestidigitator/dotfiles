@@ -38,5 +38,5 @@ prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && cp -f /.configs/key
 
 # Installing and configuring security packages
 pinn ufw fail2ban openssh
-systemctl enable ufw
+sudo systemctl enable ufw
 

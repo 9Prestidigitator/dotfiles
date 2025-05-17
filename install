@@ -73,7 +73,7 @@ main() {
     [[ ${GUIPackages} == "on" ]] && ./scripts/arch/install_gui_basic.sh
     [[ ${ProfessionalAudio} == "on" ]] && echo "Installing pro audio pkgs"
     [[ ${VirtualMachine} == "on" ]] && echo "Installing Virtual Machine"
-    [[ ${LaptopSetup} == "on" ]] && echo "Installing laptop pkgs/config"
+    [[ ${LaptopSetup} == "on" ]] && ./scripts/arch/laptop.sh
 
   elif [[ ${distro} == "debian" ]]; then
     printf "No Debian options supported yet..."
