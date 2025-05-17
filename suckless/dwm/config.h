@@ -7,7 +7,7 @@ static const unsigned int borderpx  = 4;        /* gaps between windows (4 for s
 static const unsigned int gappx     = 10;        /* gaps between windows (10 for surface, else 6) */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=24" }; /* Use 24 for larger displays, else 12. */
 static const char dmenufont[]       = "JetBrains Mono:size=24";
 static const char col_gray1[]       = "#000000";

@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
+
+source ./scripts/bash_functions.sh
+source ./scripts/arch/paccmds.sh
+source $CONFIG_FILE
+root_check
+
 # I have a couple of dwm scaling presets this is how I'm dealing with it for now...
 DISPRESET="${1:-$(prompt $'\tDisplay Presets:\n\t\t1) Around 1080p\n\t\t2) Around 1440p\n' 2)}"
 echo "$DISPRESET"

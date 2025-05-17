@@ -18,7 +18,7 @@ My custom configuration for hyprland, dwm, neovim, and various other programs I 
 I currently have the install scipt working for Arch linux. I plan to mainly use this for documentation in my Linux journey. And I do plan to have a Debian configuration eventually.
 
 ## Installation
-1. Clone the repo in your **home directory**, like so
+1. Clone the repository, like so
 ```bash
 git clone https://github.com/9Prestidigitator/dotfiles.git
 ```
@@ -26,15 +26,20 @@ git clone https://github.com/9Prestidigitator/dotfiles.git
 ```bash
 cd dotfiles
 ```
-3. run installation script (Most configs are arch only for now):
+3. run installation script (Most options are arch only for now):
 ```bash
 ./install
 ```
-Warning: This script is quite destructive with the configuration of most of these packages. If you have existing configurations for these programs you may loose them.
+Warning: This script is may **override** existing configurations.
 
 ## Configs
 ### hyprland
 ```MODKEY``` is set to the windows key.
+#### Keybindings
+These are mostly the same as dwm except for:
+- MODKEY + h, j, k, l: Move focus to different windows.
+- MODKEY + m: Move mode
+- MODKEY + r: Resize mode
 
 ### dwm
 ```MODKEY``` is set to the windows key.
