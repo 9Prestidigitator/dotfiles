@@ -2,7 +2,7 @@
 set -euo pipefail
 shopt -s extglob
 
-script_dir="${BASH_SOURCE[0]}"
+script_dir="$(realpath "${BASH_SOURCE[0]}")"
 
 ensure_in_dir() {
   local target_dir="${script_dir%/*}"
