@@ -55,9 +55,9 @@ main() {
   esac
 
   # Get the results from the checklist GUI
-  source /tmp/dots_sync.env
+  source $CONFIG_FILE
   if [[ ${distro} == "arch" ]]; then
-    source $CONFIG_FILE
+    source ./scripts/arch/paccmds.sh
     gitupdate
     pacupdate
 

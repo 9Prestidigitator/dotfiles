@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 
