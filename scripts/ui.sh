@@ -201,7 +201,7 @@ write_config() {
   install_path="${1:-"$HOME/dotfiles/"}"
 
   printf "#!/usr/bin/env bash\n\n" >"$CONFIG_FILE"
-  printf "DOTDIR=\"%s\"\n" "$install_path%/*"
+  printf "DOTDIR=\"%s\"\n" "$install_path%/*" >"$CONFIG_FILE"
   for i in "${!OPTIONS[@]}"; do
     local key
     key=$(clean_string "${OPTIONS[$i]}")
