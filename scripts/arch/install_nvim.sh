@@ -11,4 +11,3 @@ prompt_run "Install necessary latex packages?" pacman -S --needed --noconfirm za
 
 REPO_URL="https://github.com/9Prestidigitator/nvim.git"
 
-cd $HOME/.config/ && 

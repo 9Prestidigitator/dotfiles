@@ -24,6 +24,9 @@ elif [[ "$gpud" == "Virtio" ]]; then
   pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa mesa
 fi
 
+# Configure X11 startup
+cp -f ./.xinitrc $HOME/.xinitrc
+
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
 
