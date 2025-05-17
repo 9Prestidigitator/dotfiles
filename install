@@ -79,6 +79,7 @@ main() {
     printf "No Debian options supported yet..."
   fi
 
+  sys_reboot
 }
 
 main "$@"
