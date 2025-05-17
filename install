@@ -39,7 +39,7 @@ main() {
   disable_raw_mode
   trap - EXIT INT TERM
   write_config
-  root_check # Switch to sudo
+  root_check              # Switch to sudo
   distro=$(detect_distro) # Detect the distro that's being used
   case "$distro" in
   arch)
@@ -53,7 +53,6 @@ main() {
     return 1
     ;;
   esac
-
   # Get the results from the checklist GUI
   source $CONFIG_FILE
   if [[ ${distro} == "arch" ]]; then
@@ -73,6 +72,7 @@ main() {
     [[ ${GUIPackages} == "on" ]] && ./scripts/arch/install_gui_basic.sh
     [[ ${ProfessionalAudio} == "on" ]] && echo "Installing pro audio pkgs"
     [[ ${VirtualMachine} == "on" ]] && echo "Installing Virtual Machine"
+    [[ ${keyd} == "on" ]] && pinn keyd && sudo mkdir -p /etc/keyd && sudo cp -f ./configs/keyd/default.conf /etc/keyd/default.conf
     [[ ${LaptopSetup} == "on" ]] && ./scripts/arch/laptop.sh
 
   elif [[ ${distro} == "debian" ]]; then

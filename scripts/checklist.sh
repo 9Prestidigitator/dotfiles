@@ -8,6 +8,7 @@ source ./scripts/bash_functions.sh
 declare -a OPTIONS=(
   "Terminal Packages"
   "  Neovim"
+  "    latexmk"
   "  AUR Helper (paru)"
   "Window Manager"
   "  Hyprland"
@@ -21,15 +22,19 @@ declare -a OPTIONS=(
   "    Qute"
   "Professional Audio"
   "Virtual Machine"
+  "keyd"
   "Laptop Setup"
 )
 
 # Initial states for installations... might change these
 declare -a FLAGS=(
-  off off off
+  off 
+  off off 
+  off
   off off off 
   off off off 
   off off off off
+  off
   off
   off
   off
@@ -37,10 +42,13 @@ declare -a FLAGS=(
 
 # 1 means the option is a container while 2 is a selectable option that's also a container
 declare -a EXPANDABLE=(
-  1 0 0
+  1 
+  2 0 
+  0
   1 0 0
   1 0 0
   1 0 0 0
+  0
   0
   0
   0
@@ -48,13 +56,16 @@ declare -a EXPANDABLE=(
 
 # Indicates what option is required as a dependency to have as an option
 declare -a PARENT_ID=(
-  0 0 0
-  3 3 3
-  3 6 6
-  3 9 9 9
-  3
-  3
-  15
+  0 
+  0 1 
+  0
+  4 4 4
+  4 7 7
+  4 10 10 10
+  4
+  0
+  16
+  17
 )
 
 cursor=0

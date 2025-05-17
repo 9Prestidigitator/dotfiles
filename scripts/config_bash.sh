@@ -36,7 +36,7 @@ else
 fi
 
 # Installation of keyd, a really nice keyboard manager
-prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
+# prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && sudo cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
 
 # Installing and configuring security packages
 pinn ufw fail2ban openssh

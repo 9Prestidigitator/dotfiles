@@ -36,4 +36,5 @@ pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
 # Installing and configuring audio stuff
 pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol
 # dev/mixer is really old so got to load snd_pcm_oss module manually
-sudo touch /etc/modules-load.d/modules.conf && sudo echo "snd-pcm-oss" >>/etc/modules-load.d/modules.conf
+sudo touch /etc/modules-load.d/modules.conf
+echo "snd-pcm-oss" | sudo tee -a /etc/modules-load.d/modules.conf >/dev/null
