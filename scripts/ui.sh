@@ -2,7 +2,7 @@
 set -euo pipefail
 shopt -s extglob
 
-install_path={$1:-"$HOME/dotfiles/"}
+install_path="${1:-"$HOME/dotfiles/"}"
 
 source ./scripts/bash_functions.sh
 
