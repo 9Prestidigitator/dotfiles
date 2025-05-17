@@ -68,8 +68,8 @@ main() {
       ./scripts/arch/install_base_pkgs.sh
       [[ ${Hyprland} == "on" ]] && ./scripts/arch/install_hypr.sh
       [[ ${dwm} == "on" ]] && ./scripts/arch/install_X.sh
+      ./scripts/arch/install_gui_basic.sh
     fi
-    [[ ${GUIPackages} == "on" ]] && ./scripts/arch/install_gui_basic.sh
     [[ ${ProfessionalAudio} == "on" ]] && echo "Installing pro audio pkgs"
     [[ ${VirtualMachine} == "on" ]] && echo "Installing Virtual Machine"
     [[ ${keyd} == "on" ]] && pinn keyd && sudo mkdir -p /etc/keyd && sudo cp -f ./configs/keyd/default.conf /etc/keyd/default.conf

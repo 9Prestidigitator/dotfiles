@@ -23,7 +23,7 @@ fi
 
 # browser="${1:-$(prompt "Choose your browser: \nBrave(1)\nFirefox(2)\nQutebrowser(3)")}"
 # fileexplorer="${2:-$(prompt "Choose your file explorer: \nNautilus(1)\nDolphin(2)")}"
-#
+
 # # browser=prompt "Choose your browser: \nBrave(1)\nFirefox(2)\nQutebrowser(3)"
 # if [[ $browser -eq 1 ]]; then
 #   curl -fsS https://dl.brave.com/install.sh | sh
