@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 shopt -s extglob
 
@@ -13,9 +12,13 @@ declare -a OPTIONS=(
   "Window Manager"
   "  Hyprland"
   "  dwm"
-  "  GUI Packages"
+  "  File Explorer"
   "    Dolphin"
   "    Nautilus"
+  "  Browser"
+  "    Brave"
+  "    Firefox"
+  "    Qute"
   "Professional Audio"
   "Virtual Machine"
   "Laptop Setup"
@@ -24,7 +27,9 @@ declare -a OPTIONS=(
 # Initial states for installations... might change these
 declare -a FLAGS=(
   off off off
-  off off off off off off
+  off off off 
+  off off off 
+  off off off off
   off
   off
   off
@@ -35,6 +40,7 @@ declare -a EXPANDABLE=(
   1 0 0
   1 0 0
   1 0 0
+  1 0 0 0
   0
   0
   0
@@ -45,9 +51,10 @@ declare -a PARENT_ID=(
   0 0 0
   3 3 3
   3 6 6
+  3 9 9 9
   3
   3
-  11
+  15
 )
 
 cursor=0

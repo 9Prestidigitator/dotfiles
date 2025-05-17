@@ -62,7 +62,7 @@ main() {
     pacupdate
 
     # The variables for the script is the same as the label without special characters and spaces (caps sensitive)
-    [[ ${TerminalPackages} == "on" ]] && pinn tmux starship fastfetch figlet && ./scripts/config_bash.sh
+    [[ ${TerminalPackages} == "on" ]] && pinn tmux starship fastfetch figlet timeshift && ./scripts/config_bash.sh
     [[ ${Neovim} == "on" ]] && ./scripts/arch/install_nvim.sh
     [[ ${AURHelperparu} == "on" ]] && ./scripts/arch/install_paru.sh
     if [[ ${WindowManager} == "on" ]]; then

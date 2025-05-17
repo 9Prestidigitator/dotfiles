@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 
-pinn brightnessctl timeshift
+pinn brightnessctl
 
 gpud=$(detect_gpu)
 if [[ "$gpud" == "Intel" ]]; then
@@ -18,6 +20,7 @@ elif [[ "$gpud" == "NVIDIA" ]]; then
   greentext "Nvidia graphics detected...more work required"
   # Nvidia graphics requirements
   pinn nvidia nvidia-utils nvidia-settings
+  # Also install nvidia-zen for zen kernel for example
 elif [[ "$gpud" == "Virtio" ]]; then
   echo -e "\nVirtio graphics detected...\n"
   # Virtio graphics requirements

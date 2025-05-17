@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
 
 pacupdate() {
   echo -e "\nUpdating system...\n"

@@ -1,5 +1,6 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
 
 # Define colors for scipt ricing
 RED="\e[31m"

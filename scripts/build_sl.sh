@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
+
 source ./scripts/bash_functions.sh
 root_check
 
