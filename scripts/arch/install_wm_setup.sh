@@ -4,6 +4,7 @@ shopt -s extglob
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
+ensure_in_dir
 
 pinn brightnessctl blueman
 
@@ -27,8 +28,17 @@ elif [[ "$gpud" == "Virtio" ]]; then
   pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa mesa
 fi
 
+# cp -f ./.xinitrc $HOME/.xinitrc
 # Configure X11 startup
-cp -f ./.xinitrc $HOME/.xinitrc
+xinitrc="$HOME/.xinitrc"
+source_line="source $DOTDIR/.xinitrc"
+if [[ -f "$xinitrc" ]]; then
+  if ! grep -Fxq "$source_line" "$xinitrc"; then
+    printf "%s\n" "$source_line" >>"$xinitrc"
+  fi
+else
+  printf "%s\n" "$source_line" >"$xinitrc"
+fi
 
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig

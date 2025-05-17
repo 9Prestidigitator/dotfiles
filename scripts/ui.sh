@@ -2,6 +2,8 @@
 set -euo pipefail
 shopt -s extglob
 
+install_path={$1:-"$HOME/dotfiles/"}
+
 source ./scripts/bash_functions.sh
 
 # Strings for each option and dropdown menu
@@ -199,6 +201,7 @@ clean_string() {
 write_config() {
   : >"$CONFIG_FILE"
   printf "#!/usr/bin/env bash\n\n" >"$CONFIG_FILE"
+  printf "DOTDIR=\"%s\"\n" "$install_path%/*"
   for i in "${!OPTIONS[@]}"; do
     local key
     key=$(clean_string "${OPTIONS[$i]}")

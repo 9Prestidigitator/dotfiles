@@ -2,8 +2,10 @@
 set -euo pipefail
 shopt -s extglob
 
+script_dir="${BASH_SOURCE[0]}"
+
 ensure_in_dir() {
-  local target_dir="${1:-"$HOME/dotfiles/"}"
+  local target_dir="${script_dir%/*}"
   target_dir="$(eval printf "%s" "$target_dir")"
   local current_dir
   current_dir="$(realpath "$PWD")"
@@ -38,7 +40,8 @@ main() {
   done
   disable_raw_mode
   trap - EXIT INT TERM
-  write_config
+  write_config "$script_dir" # End of the ui script
+
   root_check              # Switch to sudo
   distro=$(detect_distro) # Detect the distro that's being used
   case "$distro" in
@@ -65,7 +68,7 @@ main() {
     [[ ${Neovim} == "on" ]] && ./scripts/arch/install_nvim.sh
     [[ ${AURHelperparu} == "on" ]] && ./scripts/arch/install_paru.sh
     if [[ ${WindowManager} == "on" ]]; then
-      ./scripts/arch/install_base_pkgs.sh
+      ./scripts/arch/install_wm_setup.sh
       ./scripts/arch/install_alacritty.sh
       [[ ${Hyprland} == "on" ]] && ./scripts/arch/install_hypr.sh
       [[ ${dwm} == "on" ]] && ./scripts/arch/install_X.sh
@@ -77,7 +80,13 @@ main() {
     [[ ${LaptopSetup} == "on" ]] && ./scripts/arch/laptop.sh
 
   elif [[ ${distro} == "debian" ]]; then
-    printf "No Debian options supported yet..."
+    printf "Very limited Debian options supported ..."
+    source ./scripts/debian/debcmds.sh
+    gitupdate
+    aptupdate
+
+    [[ ${TerminalPackages} == "on" ]] && ainn tmux starship fastfetch figlet timeshift && ./scripts/config_bash.sh
+    [[ ${Neovim} == "on" ]] && ./scripts/debian/install_nvim.sh
   fi
 
   sys_reboot

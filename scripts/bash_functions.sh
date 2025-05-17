@@ -63,10 +63,9 @@ detect_distro() {
 }
 
 ensure_in_dir() {
-  local target_dir="${1:-"$HOME/dotfiles/"}"
-
+  source $CONFIG_FILE 
+  local target_dir="${1:-"$DOTDIR"}"
   target_dir="$(eval printf "%s" "$target_dir")"
-
   local current_dir
   current_dir="$(realpath "$PWD")"
 
