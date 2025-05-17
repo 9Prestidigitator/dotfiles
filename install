@@ -66,6 +66,7 @@ main() {
     [[ ${AURHelperparu} == "on" ]] && ./scripts/arch/install_paru.sh
     if [[ ${WindowManager} == "on" ]]; then
       ./scripts/arch/install_base_pkgs.sh
+      ./scripts/arch/install_alacritty.sh
       [[ ${Hyprland} == "on" ]] && ./scripts/arch/install_hypr.sh
       [[ ${dwm} == "on" ]] && ./scripts/arch/install_X.sh
       ./scripts/arch/install_gui_basic.sh
