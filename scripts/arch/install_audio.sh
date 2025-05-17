@@ -7,4 +7,6 @@ pacupdate
 # The idea is to get an automatic install that follows:
 # https://wiki.archlinux.org/title/Professional_audio
 # But also may some automatic installation of my Reaper config and extensions
-pacman -S reaper qjackctl
+pinn reaper qjackctl
+# Supposedly adding the user to the realtime group improves audio latency performance
+sudo usermod -aG realtime $SUDO_USER

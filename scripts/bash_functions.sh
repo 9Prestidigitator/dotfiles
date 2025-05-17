@@ -10,6 +10,9 @@ BOLD="\e[1m"
 ULINE="\e[4m"
 RESET="\033[0m"
 
+# Path to use for the checklist configuration
+CONFIG_FILE="/tmp/dotschoices.env"
+
 # Reboot system
 sys_reboot() {
   read -p "$(echo -e "\n${BOLD}${YELLOW}Want to reboot? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r reboot
@@ -29,11 +32,9 @@ sys_reboot() {
 detect_distro() {
   local id_like
   local distro
-
   if [[ -r /etc/os-release ]]; then
     # shellcheck disable=SC1091
     source /etc/os-release
-
     if [[ -n "${ID:-}" ]]; then
       distro="$ID"
     elif [[ -n "${ID_LIKE:-}" ]]; then
@@ -50,7 +51,6 @@ detect_distro() {
     printf "Unsupported system: cannot detect distro.\n" >&2
     return 1
   fi
-
   case "$distro" in
   ubuntu | debian) printf "debian\n" ;;
   arch | manjaro) printf "arch\n" ;;
@@ -62,18 +62,23 @@ detect_distro() {
 }
 
 ensure_in_dir() {
-  local target_dir="${1:-"/home/$SUDO_USER/dotfiles/"}"
-  # Expand ~ to full home path
-  target_dir="${target_dir/#\~/$HOME}"
-  # Resolve both paths to avoid mismatch from symlinks, etc.
+  local target_dir="${1:-"$HOME/dotfiles/"}"
+
+  target_dir="$(eval printf "%s" "$target_dir")"
+
   local current_dir
   current_dir="$(realpath "$PWD")"
+
   local resolved_target
-  resolved_target="$(realpath "$target_dir")"
+  resolved_target="$(realpath "$target_dir" 2>/dev/null)" || {
+    printf "Error: Target directory does not exist: %s\n" "$target_dir" >&2
+    return 1
+  }
+
   if [[ "$current_dir" != "$resolved_target" ]]; then
-    greentext "Changing directory to: $resolved_target"
+    printf "Changing directory to: %s\n" "$resolved_target"
     cd "$resolved_target" || {
-      redtext "Error: Could not change to $resolved_target"
+      printf "Error: Could not change to %s\n" "$resolved_target" >&2
       return 1
     }
   fi

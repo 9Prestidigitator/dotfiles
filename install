@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
+
+ensure_in_dir() {
+  local target_dir="${1:-"$HOME/dotfiles/"}"
+  target_dir="$(eval printf "%s" "$target_dir")"
+  local current_dir
+  current_dir="$(realpath "$PWD")"
+
+  local resolved_target
+  resolved_target="$(realpath "$target_dir" 2>/dev/null)" || {
+    printf "Error: Target directory does not exist: %s\n" "$target_dir" >&2
+    return 1
+  }
+
+  if [[ "$current_dir" != "$resolved_target" ]]; then
+    printf "Changing directory to: %s\n" "$resolved_target"
+    cd "$resolved_target" || {
+      printf "Error: Could not change to %s\n" "$resolved_target" >&2
+      return 1
+    }
+  fi
+}
+
+main() {
+  ensure_in_dir
+  source ./scripts/checklist.sh
+  source ./scripts/bash_functions.sh
+  # Start the option menu
+  enable_raw_mode
+  trap disable_raw_mode EXIT INT TERM
+  while true; do
+    render_menu
+    if ! handle_input; then
+      break
+    fi
+  done
+  disable_raw_mode
+  trap - EXIT INT TERM
+  write_config
+  root_check # Switch to sudo
+  distro=$(detect_distro) # Detect the distro that's being used
+  case "$distro" in
+  arch)
+    printf "Detected \033[1;34march\033[0m.\n"
+    ;;
+  debian)
+    printf "Detected \033[1;31mdebian\033[0m.\n"
+    ;;
+  *)
+    printf "Unsupported package manager detected."
+    return 1
+    ;;
+  esac
+
+  # Get the results from the checklist GUI
+  source /tmp/dots_sync.env
+  if [[ ${distro} == "arch" ]]; then
+    source ./scripts/arch/paccmds.sh
+    gitupdate
+    pacupdate
+
+    # The variables for the script is the same as the label without special characters and spaces (caps sensitive)
+    [[ ${TerminalPackages} == "on" ]] && pinn tmux starship fastfetch figlet && ./scripts/config_bash.sh
+    [[ ${Neovim} == "on" ]] && ./scripts/arch/install_nvim.sh
+    [[ ${AURHelperparu} == "on" ]] && ./scripts/arch/install_paru.sh
+    if [[ ${WindowManager} == "on" ]]; then
+      ./scripts/arch/install_base_pkgs.sh
+      [[ ${Hyprland} == "on" ]] && ./scripts/arch/install_hypr.sh
+      [[ ${dwm} == "on" ]] && ./scripts/arch/install_X.sh
+    fi
+    [[ ${GUIPackages} == "on" ]] && ./scripts/arch/install_gui_basic.sh
+    [[ ${ProfessionalAudio} == "on" ]] && echo "Installing pro audio pkgs"
+    [[ ${VirtualMachine} == "on" ]] && echo "Installing Virtual Machine"
+    [[ ${LaptopSetup} == "on" ]] && echo "Installing laptop pkgs/config"
+
+  elif [[ ${distro} == "debian" ]]; then
+    printf "No Debian options supported yet..."
+  fi
+
+}
+
+main "$@"

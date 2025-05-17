@@ -1,8 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 root_check
 
-pacman -S --noconfirm --needed neovim npm python nodejs
+pinn neovim npm python nodejs
 prompt_run "Install necessary latex packages?" pacman -S --needed --noconfirm zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science
-cp -fr ./configs/nvim /home/$SUDO_USER/.config/
+
+REPO_URL="https://github.com/9Prestidigitator/nvim.git"
+
+cd $HOME/.config/ && 

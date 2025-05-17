@@ -27,19 +27,7 @@ fi
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
 
-# Installation of keyd, a really fast keyboard manager
-prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
-
-# Installing and configuring security packages
-pinn ufw fail2ban openssh
-systemctl enable ufw
-
 # Installing and configuring audio stuff
 pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol
 # dev/mixer is really old so got to load snd_pcm_oss module manually
 touch /etc/modules-load.d/modules.conf && echo "snd-pcm-oss" >>/etc/modules-load.d/modules.conf
-# Supposedly adding the user to the realtime group improves audio latency performance
-usermod -aG realtime $SUDO_USER
-
-# Battery utils for laptops:
-prompt_run "Using a laptop?" $(pinn tlp && systemctl enable --now tlp)

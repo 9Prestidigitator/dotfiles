@@ -19,7 +19,7 @@ echo -e "${RED}Warning: This script is designed for a fresh install of Arch Linu
 continue_prompt
 
 # Configure bash stuff
-pinn tmux starship fastfetch tmux 
+pinn tmux starship fastfetch 
 ./scripts/config_bash.sh
 ./scripts/arch/install_base_pkgs.sh
 

@@ -33,3 +33,10 @@ else
   echo -e "\nContains modular bash_profile.\n"
 fi
 
+# Installation of keyd, a really nice keyboard manager
+prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
+
+# Installing and configuring security packages
+pinn ufw fail2ban openssh
+systemctl enable ufw
+

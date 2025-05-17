@@ -2,13 +2,13 @@
 
 pacupdate() {
   echo -e "\nUpdating system...\n"
-  pacman -Syu --noconfirm
+  sudo pacman -Syu --noconfirm
 }
 
 gitupdate() {
-  pacman -S --noconfirm --needed base-devel git
+  sudo pacman -S --noconfirm --needed base-devel git
 }
 
 pinn() {
-  pacman -S --noconfirm --needed "$@"
+  sudo pacman -S --noconfirm --needed "$@"
 }
