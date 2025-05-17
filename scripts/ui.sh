@@ -2,8 +2,6 @@
 set -euo pipefail
 shopt -s extglob
 
-install_path="${1:-"$HOME/dotfiles/"}"
-
 source ./scripts/bash_functions.sh
 
 # Strings for each option and dropdown menu
@@ -30,11 +28,11 @@ declare -a OPTIONS=(
 
 # Initial states for installations... might change these
 declare -a FLAGS=(
-  off 
-  off off 
   off
-  off off off 
-  off off off 
+  off off
+  off
+  off off off
+  off off off
   off off off off
   off
   off
@@ -44,8 +42,8 @@ declare -a FLAGS=(
 
 # 1 means the option is a container while 2 is a selectable option that's also a container
 declare -a EXPANDABLE=(
-  1 
-  2 0 
+  1
+  2 0
   0
   1 0 0
   1 0 0
@@ -58,8 +56,8 @@ declare -a EXPANDABLE=(
 
 # Indicates what option is required as a dependency to have as an option
 declare -a PARENT_ID=(
-  0 
-  0 1 
+  0
+  0 1
   0
   4 4 4
   4 7 7
@@ -200,6 +198,8 @@ clean_string() {
 
 write_config() {
   : >"$CONFIG_FILE"
+  install_path="${1:-"$HOME/dotfiles/"}"
+
   printf "#!/usr/bin/env bash\n\n" >"$CONFIG_FILE"
   printf "DOTDIR=\"%s\"\n" "$install_path%/*"
   for i in "${!OPTIONS[@]}"; do
