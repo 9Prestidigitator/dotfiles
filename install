@@ -23,6 +23,7 @@ main() {
       break
     fi
   done
+  disable_raw_mode
   trap - EXIT INT TERM
   write_config "$script_dir" # End of the ui script
   source $CONFIG_FILE # Get the results from the checklist GUI
