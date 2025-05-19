@@ -9,17 +9,16 @@ source $CONFIG_FILE
 sudo -v
 
 # I have a couple of dwm scaling presets this is how I'm dealing with it for now...
-dwm_preset="${dwm_present}"
-echo -e "\n${BLUE}${BOLD}Configuring suckless programs...${RESET}\n"
-if [[ "$dwm_preset" -eq 1 ]]; then
+echo -e "\n${BOLD}Configuring suckless programs...${RESET}\n"
+if [[ "${dwm_preset}" -eq 1 ]]; then
   # Presets for a 1080 screen
   # borderpx, gappx, fontsize, App GUI scale
   config_preset_array1=(2 6 12 1)
-elif [[ "$dwm_preset" -eq 2 ]]; then
+elif [[ "${dwm_preset}" -eq 2 ]]; then
   # Presets for a 1440 screen
   config_preset_array1=(4 10 24 2)
 else
-  config_preset_array1=(2 6 12)
+  config_preset_array1=(2 6 12 1)
 fi
 # The changing of the variables is quite weird... might replace with something else later
 sed -i "s/^\(static const unsigned int borderpx *= *\)[0-9]\+\(.*\)/\1${config_preset_array1[0]}\2/" ./suckless/dwm/config.h
