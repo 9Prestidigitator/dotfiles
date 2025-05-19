@@ -6,10 +6,10 @@ sudo -v
 
 echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
 cd ./suckless/dwm/ && sudo make clean install
-echo -e "\n${GREEN}${BOLD}Building dmenu.${RESET}\n"
+printf "\nBuilding dmenu.\n"
 cd ../dmenu/ && sudo make clean install
-echo -e "\n${GREEN}${BOLD}Building st.${RESET}\n"
+printf "\nBuilding st.\n"
 cd ../st && sudo make clean install
-echo -e "\n${GREEN}${BOLD}Building slstatus.${RESET}\n"
+printf "\nBuilding slstatus.\n"
 cd ../slstatus/ && sudo make clean install && cd ../..
-echo -e "\n${YELLOW}Reboot required to take effect.${RESET}\n"
+printf "\nReboot required to take effect.\n"
