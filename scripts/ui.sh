@@ -23,10 +23,11 @@ declare -a OPTIONS=(
   "    Brave"
   "    Firefox"
   "    Qute"
-  "Professional Audio"
-  "Virtual Machine"
-  "keyd"
-  "Laptop Setup"
+  "Other Utilities"
+  "  Professional Audio"
+  "  Virtual Machine"
+  "  keyd"
+  "  Laptop Setup"
 )
 
 # Initial states for installations... might change these
@@ -37,10 +38,7 @@ declare -a FLAGS=(
   off off off
   off off off
   off off off off
-  off
-  off
-  off
-  off
+  off off off off off
 )
 
 # 1 means the option is a container while 2 is a selectable option that's also a container
@@ -51,10 +49,7 @@ declare -a EXPANDABLE=(
   1 0 0
   1 0 0
   1 0 0 0
-  0
-  0
-  0
-  0
+  1 0 0 0 0
 )
 
 # Indicates what option is required as a dependency to have as an option
@@ -65,19 +60,18 @@ declare -a PARENT_ID=(
   4 4 4
   4 7 7
   4 10 10 10
-  4
-  0
-  16
-  17
+  14 14 14 14 14
 )
 
 enable_raw_mode() {
   stty -echo -icanon time 0 min 0
+  printf "\033[?25l"
 }
 
 # Ends the checkbox menu
 disable_raw_mode() {
   stty sane
+  printf "\033[?25h"
 }
 
 render_menu() {
