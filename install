@@ -31,6 +31,7 @@ main() {
   [[ ${dwm} == "on" ]] && printf "dwm_preset=\"%s\"\n" "$(prompt $'Select a dwm/X11 preset:\n\t1: Around 1080p\n\t2: Around 1440p\n' 2)" >>"$CONFIG_FILE"
 
   sudo -v # Switch to sudo
+
   if [[ ${distro} == "arch" ]]; then
     source ./scripts/arch/paccmds.sh
     gitupdate
