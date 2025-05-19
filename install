@@ -51,7 +51,7 @@ main() {
     fi
     [[ ${ProfessionalAudio} == "on" ]] && ./scripts/arch/install_audio.sh
     [[ ${VirtualMachine} == "on" ]] && ./scripts/arch/install_qemuKVM.sh
-    [[ ${keyd} == "on" ]] && pinn keyd && sudo mkdir -p /etc/keyd && sudo cp -f ./configs/keyd/default.conf /etc/keyd/default.conf
+    [[ ${keyd} == "on" ]] && pinn keyd && sudo mkdir -p /etc/keyd && sudo cp -f ./configs/keyd/default.conf /etc/keyd/default.conf && sudo systemctl enable --now keyd
     [[ ${LaptopSetup} == "on" ]] && ./scripts/arch/laptop.sh
 
   elif [[ ${distro} == "debian" ]]; then
