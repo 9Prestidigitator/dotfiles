@@ -2,8 +2,6 @@
 set -euo pipefail
 shopt -s extglob
 
-source ./scripts/bash_functions.sh
-
 sudo -v
 
 echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"

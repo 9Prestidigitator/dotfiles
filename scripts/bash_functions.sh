@@ -86,7 +86,7 @@ prompt() {
   elif [[ $color == 2 ]]; then
     read -p "$(echo -en "\n${BOLD}$text ${RESET}\n")" -rn 1 user_input
   fi
-  echo "$user_input"
+  printf "$user_input"
 }
 
 prompt_run() {

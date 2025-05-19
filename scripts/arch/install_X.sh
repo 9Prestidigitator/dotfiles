@@ -23,7 +23,7 @@ else
 fi
 
 printf "\nInstalling dependencies...\n"
-pinn xorg-server xorg-xinit xorg-xset libx11 libxft libxinerama xorgproto xorg-xrandr autorandr xorg-xev xf86-input-evdev xclip slock maim feh picom
+pinn libx11 xorg-server xorg-xinit xorg-xset libxft libxinerama xorgproto xorg-xrandr autorandr xorg-xev xf86-input-evdev xorg-xhost xclip slock maim feh picom dunst
 
 # Picom is an effects compositor for X11
 sudo cp -f ./configs/picom/picom.conf /etc/xdg/picom.conf
