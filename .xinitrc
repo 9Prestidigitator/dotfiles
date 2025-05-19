@@ -2,5 +2,6 @@
 ~/.fehbg &
 picom &
 slstatus &
+dunst &
 exec dwm
 
