@@ -11,11 +11,6 @@ BOLD="\e[1m"
 ULINE="\e[4m"
 RESET="\033[0m"
 
-# Path to use for the checklist configuration
-CONFIG_FILE=$(mktemp)
-# CONFIG_FILE="/tmp/dotschoices.env"
-REPO_CLONES=$(mktemp -d)
-
 # Reboot system
 sys_reboot() {
   read -p "$(echo -e "\n${BOLD}${YELLOW}Reboot? (y/n): ${RESET}\n")" -n 1 -r reboot

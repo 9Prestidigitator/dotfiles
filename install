@@ -3,6 +3,11 @@ set -euo pipefail
 shopt -s extglob
 
 main() {
+  # Path to use for the checklist configuration
+  export CONFIG_FILE=$(mktemp)
+  # Path for cloning git repos
+  export REPO_CLONES=$(mktemp -d)
+
   script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" && cd $script_dir
   source ./scripts/ui.sh
   source ./scripts/bash_functions.sh
