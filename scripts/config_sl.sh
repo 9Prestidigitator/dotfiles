@@ -5,17 +5,17 @@ shopt -s extglob
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 source $CONFIG_FILE
-root_check
+
+sudo -v
 
 # I have a couple of dwm scaling presets this is how I'm dealing with it for now...
-DISPRESET="${1:-$(prompt $'\tDisplay Presets:\n\t\t1) Around 1080p\n\t\t2) Around 1440p\n' 2)}"
-echo "$DISPRESET"
+dwm_preset="${dwm_present}"
 echo -e "\n${BLUE}${BOLD}Configuring suckless programs...${RESET}\n"
-if [[ "$DISPRESET" -eq 1 ]]; then
+if [[ "$dwm_preset" -eq 1 ]]; then
   # Presets for a 1080 screen
   # borderpx, gappx, fontsize, App GUI scale
   config_preset_array1=(2 6 12 1)
-elif [[ "$DISPRESET" -eq 2 ]]; then
+elif [[ "$dwm_preset" -eq 2 ]]; then
   # Presets for a 1440 screen
   config_preset_array1=(4 10 24 2)
 else

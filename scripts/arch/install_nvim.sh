@@ -4,9 +4,9 @@ set -euo pipefail
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
-root_check
-
 source $CONFIG_FILE
+
+sudo -v
 
 pinn neovim npm python nodejs
 [[ ${latexmk} == "on" ]] && pinn zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science

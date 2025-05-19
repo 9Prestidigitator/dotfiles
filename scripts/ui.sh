@@ -3,6 +3,9 @@ set -euo pipefail
 shopt -s extglob
 
 source ./scripts/bash_functions.sh
+distro=$(detect_distro) # Detect the distro that's being used
+
+cursor=0
 
 # Strings for each option and dropdown menu
 declare -a OPTIONS=(
@@ -68,8 +71,6 @@ declare -a PARENT_ID=(
   17
 )
 
-cursor=0
-
 enable_raw_mode() {
   stty -echo -icanon time 0 min 0
 }
@@ -81,6 +82,10 @@ disable_raw_mode() {
 
 render_menu() {
   printf "\033c"
+  case "$distro" in
+  arch) printf "\033[1;34m                       󰣇 arch\033[0m\n" ;;
+  debian) printf "\033[1;31m                       debian\033[0m\n" ;;
+  esac
   printf "╔══════════════════════════════════════════════════╗\n"
   printf "║        \e[34m\e[1mWelcome to my dotfiles syncronizer!\033[0m       ║\n"
   printf "╠══════════════════════════════════════════════════╣\n"
@@ -201,7 +206,7 @@ write_config() {
   install_path="${1:-"$HOME/dotfiles/"}"
 
   printf "#!/usr/bin/env bash\n\n" >"$CONFIG_FILE"
-  printf "DOTDIR=\"%s\"\n" "${install_path%/*}" >"$CONFIG_FILE"
+  printf "DOTDIR=\"%s\"\n" "${install_path}" >"$CONFIG_FILE"
   for i in "${!OPTIONS[@]}"; do
     local key
     key=$(clean_string "${OPTIONS[$i]}")

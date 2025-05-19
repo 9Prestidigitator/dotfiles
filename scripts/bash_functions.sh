@@ -12,20 +12,22 @@ ULINE="\e[4m"
 RESET="\033[0m"
 
 # Path to use for the checklist configuration
-CONFIG_FILE="/tmp/dotschoices.env"
+CONFIG_FILE=$(mktemp)
+# CONFIG_FILE="/tmp/dotschoices.env"
+REPO_CLONES=$(mktemp -d)
 
 # Reboot system
 sys_reboot() {
-  read -p "$(echo -e "\n${BOLD}${YELLOW}Want to reboot? [(1) Yes, (0) No]: ${RESET}\n")" -n 1 -r reboot
+  read -p "$(echo -e "\n${BOLD}${YELLOW}Reboot? (y/n): ${RESET}\n")" -n 1 -r reboot
   case $reboot in
-  1)
-    reboot
+  [Yy]*) reboot ;;
+  [Nn]*)
+    echo -e "Skipping reboot, please reboot later."
+    exit 1
     ;;
   *)
-    echo -e "\nSkipping reboot."
-    ;;
-  *)
-    echo -e "\nInvalid input."
+    echo -e "Invalid input."
+    exit 1
     ;;
   esac
 }
@@ -63,18 +65,13 @@ detect_distro() {
 }
 
 ensure_in_dir() {
-  source $CONFIG_FILE 
-  local target_dir="${1:-"$DOTDIR"}"
-  target_dir="$(eval printf "%s" "$target_dir")"
-  local current_dir
-  current_dir="$(realpath "$PWD")"
-
-  local resolved_target
-  resolved_target="$(realpath "$target_dir" 2>/dev/null)" || {
+  source $CONFIG_FILE
+  local target_dir="$(eval printf "%s" "${1:-"$DOTDIR"}")"
+  local current_dir="$(realpath "$PWD")"
+  local resolved_target="$(realpath "$target_dir" 2>/dev/null)" || {
     printf "Error: Target directory does not exist: %s\n" "$target_dir" >&2
     return 1
   }
-
   if [[ "$current_dir" != "$resolved_target" ]]; then
     printf "Changing directory to: %s\n" "$resolved_target"
     cd "$resolved_target" || {
@@ -108,14 +105,6 @@ prompt_run() {
   else
     echo -en "\nAborted.\n" >&2
     echo "0"
-  fi
-}
-
-# Check if the script user is in root
-root_check() {
-  if [[ $EUID -ne 0 ]]; then
-    echo -e "${RED}${BOLD}This script requires root priveledges.${RESET}"
-    sudo -v
   fi
 }
 

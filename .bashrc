@@ -24,7 +24,9 @@ gaa() {
 
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
-[[ -x $(command -v vim) ]] && alias v='vim'
-[[ -x $(command -v nvim) ]] && alias nv='nvim'
+alias fman='compgen -c | sort -hr | fzf | xargs man'
+[[ -x $(command -v vim) ]] && alias v='vim' && export EDITOR="vim"
+[[ -x $(command -v nvim) ]] && alias nv='nvim' && export EDITOR="nvim"
+
 PS1='[\u@\h \W]\$ '
 

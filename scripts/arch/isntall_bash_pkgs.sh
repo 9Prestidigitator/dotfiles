@@ -4,12 +4,23 @@ shopt -s extglob
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
-root_check
+
+sudo -v
 ensure_in_dir
+
+# My favorite bash packages and utilities
+pinn tmux ripgrep fd starship fastfetch figlet timeshift htop
 
 # Adding config files
 cp -f ./configs/tmux/.tmux.conf $HOME/.tmux.conf
 cp -fr ./configs/fastfetch $HOME/.config/
+
+# Installation of keyd, a really nice keyboard manager
+[[ ${keyd} == "on" ]] && pinn keyd && mkdir -p /etc/keyd && sudo cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
+
+# Installing and configuring security packages
+pinn ufw fail2ban openssh
+sudo systemctl enable ufw
 
 # Installing custom ~/.bashrc
 default_bashrc=$'#\n# ~/.bashrc\n#'
@@ -34,11 +45,4 @@ if [[ "$default_bash_prof" == "$bash_prof_header" ]]; then
 else
   echo -e "\nContains modular bash_profile.\n"
 fi
-
-# Installation of keyd, a really nice keyboard manager
-# prompt_run "Install keyd" pinn keyd && mkdir -p /etc/keyd && sudo cp -f /.configs/keyd/default.conf /etc/keyd/default.conf
-
-# Installing and configuring security packages
-pinn ufw fail2ban openssh
-sudo systemctl enable ufw
 

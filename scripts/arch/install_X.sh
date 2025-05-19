@@ -5,7 +5,8 @@ shopt -s extglob
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 source $CONFIG_FILE
-root_check
+
+sudo -v
 
 ./scripts/config_sl.sh
 
@@ -33,3 +34,5 @@ echo "snd-pcm-oss" | sudo tee -a /etc/modules-load.d/modules.conf >/dev/null
 
 # run build_sl script
 ./scripts/build_sl.sh
+
+ensure_in_dir

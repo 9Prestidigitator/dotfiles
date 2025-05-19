@@ -4,7 +4,8 @@ shopt -s extglob
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
-root_check
+
+sudo -v
 ensure_in_dir
 
 pinn hyprland hyprpaper waybar wofi hyprlock wlr-randr wl-clipboard hypridle xorg-xhost

@@ -2,35 +2,19 @@
 set -euo pipefail
 shopt -s extglob
 
-script_dir="$(realpath "${BASH_SOURCE[0]}")"
-
-ensure_in_dir() {
-  local target_dir="${script_dir%/*}"
-  target_dir="$(eval printf "%s" "$target_dir")"
-  local current_dir
-  current_dir="$(realpath "$PWD")"
-
-  local resolved_target
-  resolved_target="$(realpath "$target_dir" 2>/dev/null)" || {
-    printf "Error: Target directory does not exist: %s\n" "$target_dir" >&2
-    return 1
-  }
-
-  if [[ "$current_dir" != "$resolved_target" ]]; then
-    printf "Changing directory to: %s\n" "$resolved_target"
-    cd "$resolved_target" || {
-      printf "Error: Could not change to %s\n" "$resolved_target" >&2
-      return 1
-    }
-  fi
-}
-
 main() {
-  ensure_in_dir
+  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" && cd $script_dir
   source ./scripts/ui.sh
   source ./scripts/bash_functions.sh
-  # Start the option menu
-  enable_raw_mode
+  distro=$(detect_distro) # Detect the distro that's being used
+  case "$distro" in
+  *)
+    printf "Unsupported package manager detected." >&2
+    return 1
+    ;;
+  esac
+
+  enable_raw_mode # Start the ui
   trap disable_raw_mode EXIT INT TERM
   while true; do
     render_menu
@@ -42,29 +26,20 @@ main() {
   trap - EXIT INT TERM
   write_config "$script_dir" # End of the ui script
 
-  root_check              # Switch to sudo
-  distro=$(detect_distro) # Detect the distro that's being used
-  case "$distro" in
-  arch)
-    printf "Detected \033[1;34march\033[0m.\n"
-    ;;
-  debian)
-    printf "Detected \033[1;31mdebian\033[0m.\n"
-    ;;
-  *)
-    printf "Unsupported package manager detected."
-    return 1
-    ;;
-  esac
-  # Get the results from the checklist GUI
-  source $CONFIG_FILE
+  sudo -v # Switch to sudo
+
+  source $CONFIG_FILE # Get the results from the checklist GUI
+
+  # Preset package selection
+  [[ ${dwm} == "on" ]] && printf "dwm_preset=\"%s\"\n" "$(prompt $'\dwm/X11 presets:\n\t\t1: Around 1080p\n\t\t2: Around 1440p\n' 2)" >>"$CONFIG_FILE"
+
   if [[ ${distro} == "arch" ]]; then
     source ./scripts/arch/paccmds.sh
     gitupdate
     pacupdate
 
     # The variables for the script is the same as the label without special characters and spaces (caps sensitive)
-    [[ ${TerminalPackages} == "on" ]] && pinn tmux starship fastfetch figlet timeshift && ./scripts/config_bash.sh
+    [[ ${TerminalPackages} == "on" ]] && ./scripts/arch/install_bash_pkgs.sh
     [[ ${Neovim} == "on" ]] && ./scripts/arch/install_nvim.sh
     [[ ${AURHelperparu} == "on" ]] && ./scripts/arch/install_paru.sh
     if [[ ${WindowManager} == "on" ]]; then
@@ -85,7 +60,7 @@ main() {
     gitupdate
     aptupdate
 
-    [[ ${TerminalPackages} == "on" ]] && ainn tmux starship fastfetch figlet timeshift && ./scripts/config_bash.sh
+    [[ ${TerminalPackages} == "on" ]] && ainn tmux starship fastfetch figlet timeshift
     [[ ${Neovim} == "on" ]] && ./scripts/debian/install_nvim.sh
   fi
 

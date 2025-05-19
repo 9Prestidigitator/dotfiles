@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source ./scripts/bash_functions.sh
-cd $HOME
+cd $REPO_CLONES
 
 git clone https://aur.archlinux.org/paru.git
 cd paru

@@ -3,7 +3,8 @@ set -euo pipefail
 shopt -s extglob
 
 source ./scripts/bash_functions.sh
-root_check
+
+sudo -v
 
 echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
 cd ./suckless/dwm/ && sudo make clean install
