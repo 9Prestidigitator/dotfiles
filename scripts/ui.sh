@@ -83,8 +83,8 @@ disable_raw_mode() {
 render_menu() {
   printf "\033c"
   case "$distro" in
-  arch) printf "\033[1;34m                       󰣇 arch\033[0m\n" ;;
-  debian) printf "\033[1;31m                       debian\033[0m\n" ;;
+  arch) printf "\n\033[1;34m                       󰣇 arch\033[0m\n" ;;
+  debian) printf "\n\033[1;31m                       debian\033[0m\n" ;;
   esac
   printf "╔══════════════════════════════════════════════════╗\n"
   printf "║        \e[34m\e[1mWelcome to my dotfiles syncronizer!\033[0m       ║\n"
