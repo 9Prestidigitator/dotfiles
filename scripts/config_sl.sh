@@ -5,6 +5,7 @@ shopt -s extglob
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
 source $CONFIG_FILE
+ensure_in_dir
 
 sudo -v
 
