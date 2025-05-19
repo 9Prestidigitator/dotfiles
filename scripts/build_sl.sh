@@ -4,7 +4,7 @@ shopt -s extglob
 
 sudo -v
 
-echo -e "\nBuilding sl programs.\n${GREEN}${BOLD}Building dwm.${RESET}\n"
+printf "\nBuilding sl programs.\nBuilding dwm.\n"
 cd ./suckless/dwm/ && sudo make clean install
 printf "\nBuilding dmenu.\n"
 cd ../dmenu/ && sudo make clean install
