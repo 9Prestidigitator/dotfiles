@@ -6,13 +6,9 @@ main() {
   script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" && cd $script_dir
   source ./scripts/ui.sh
   source ./scripts/bash_functions.sh
+
   distro=$(detect_distro) # Detect the distro that's being used
-  case "$distro" in
-  *)
-    printf "Unsupported package manager detected." >&2
-    return 1
-    ;;
-  esac
+  [[ "$distro" != "arch" ]] && [[ "$distro" != "arch" ]] && printf "Unsupported package manager detected.\n" >&2 && return 1
 
   enable_raw_mode # Start the ui
   trap disable_raw_mode EXIT INT TERM
