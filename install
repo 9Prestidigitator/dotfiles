@@ -27,12 +27,12 @@ main() {
   trap - EXIT INT TERM
   write_config "$script_dir" # End of the ui script
 
-  sudo -v # Switch to sudo
-
   source $CONFIG_FILE # Get the results from the checklist GUI
 
   # Package preset selection
   [[ ${dwm} == "on" ]] && printf "dwm_preset=\"%s\"\n" "$(prompt $'Select a dwm/X11 preset:\n\t1: Around 1080p\n\t2: Around 1440p\n' 2)" >>"$CONFIG_FILE"
+
+  sudo -v # Switch to sudo
 
   if [[ ${distro} == "arch" ]]; then
     source ./scripts/arch/paccmds.sh
