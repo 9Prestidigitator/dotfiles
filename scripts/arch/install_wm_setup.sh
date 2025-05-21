@@ -7,7 +7,11 @@ source ./scripts/arch/paccmds.sh
 source $CONFIG_FILE
 ensure_in_dir
 
-pinn brightnessctl blueman
+sudo -v
+
+# Essential packages no matter what display manager you use
+pinn brightnessctl bluez bluez-utils blueman archlinux-xdg-menu dunst adw-gtk-theme
+sudo systemctl enable --now bluetooth
 
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
@@ -32,5 +36,5 @@ elif [[ "$gpud" == "Virtio" ]]; then
   pinn xf86-video-qxl xf86-video-vesa xf86-video-qxl xf86-video-vesa mesa
 fi
 
-# Installing stuff
+# Installing audio stuff
 pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol

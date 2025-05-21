@@ -11,7 +11,7 @@ pacupdate
 
 # The idea is to get an automatic install that follows:
 # https://wiki.archlinux.org/title/Professional_audio
-#
+
 # Supposedly adding the user to the realtime group improves audio latency performance
 sudo usermod -aG realtime $(whoami)
 sudo usermod -aG audio $(whoami)
@@ -20,5 +20,16 @@ sudo usermod -aG audio $(whoami)
 pinn reaper qjackctl
 
 # Overwitch; Overbridge substitute
+cd $REPO_CLONES
 
+git clone https://github.com/dagargo/overwitch.git
+cd overwitch
+autoreconf --install
+./configure CLI_ONLY=yes
+sudo make install
+sudo ldconfig
+cd udev
+sudo make install
+
+ensure_in_dir
 

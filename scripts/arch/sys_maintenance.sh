@@ -3,6 +3,8 @@ echo "----------------------------------------------------"
 echo "UPDATING SYSTEM"
 echo "----------------------------------------------------"
 
+sudo -v
+
 paru -Syu
 
 echo ""
@@ -26,9 +28,16 @@ echo "----------------------------------------------------"
 
 orphaned=$(paru -Qdtq)
 if [ -n "$orphaned" ]; then
-    echo "$orphaned" | paru -Rns -
+  echo "$orphaned" | paru -Rns -
 else
-    echo "No orphaned packages to remove."
+  echo "No orphaned packages to remove."
+fi
+
+orphaned=$(pacman -Qtdq)
+if [ -n "$orphaned" ]; then
+  echo "$orphaned" | sudo pacman -Rns -
+else
+  echo "No orphaned packages to remove"
 fi
 
 echo ""

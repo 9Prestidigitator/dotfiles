@@ -3,6 +3,8 @@
 source ./scripts/bash_functions.sh
 cd $REPO_CLONES
 
+sudo -v
+
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si --noconfirm

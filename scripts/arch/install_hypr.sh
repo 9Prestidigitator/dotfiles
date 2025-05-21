@@ -8,7 +8,7 @@ source ./scripts/arch/paccmds.sh
 sudo -v
 ensure_in_dir
 
-pinn hyprland hyprpaper waybar wofi hyprlock wlr-randr wl-clipboard hypridle
+pinn hyprland hyprpaper waybar wofi hyprlock wlr-randr wl-clipboard hypridle slurp qt5-wayland qt6-wayland xdg-desktop-portal-hyprland
 
 cp -fr ./configs/hypr $HOME/.config && cp -fr ./configs/wofi $HOME/.config && cp -fr ./configs/waybar $HOME/.config
 

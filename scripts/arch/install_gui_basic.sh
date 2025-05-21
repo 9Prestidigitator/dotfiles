@@ -11,7 +11,7 @@ pacupdate
 source $CONFIG_FILE
 
 if [[ ${FileExplorer} == "on" ]]; then
-  [[ ${Dolphin} == "on" ]] && pinn dolphin
+  [[ ${Dolphin} == "on" ]] && pinn dolphin qt5ct qt6ct kvantum kvantum breeze-icons
   [[ ${Nautilus} == "on" ]] && pinn nautilus
 fi
 
