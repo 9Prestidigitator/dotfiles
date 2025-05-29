@@ -17,7 +17,6 @@ startx11() {
 }
 
 startway() {
-  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   exec Hyprland
 }
 
@@ -57,7 +56,6 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
     ;;
   1)
     echo "Starting X11 (dwm)..."
-    # X11 variables
     startx11
     ;;
   2)
@@ -66,7 +64,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) =~ /dev/tty[1-9]$ ]]; then
     ;;
   *)
     echo "No input or invalid selection. Starting default..."
-    startx11
+    startway
     ;;
   esac
 fi

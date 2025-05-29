@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "bottom", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -14,6 +14,7 @@
     "modules-center": [
     ],
     "modules-right": [
+        "tray",
         "mpd",
         //"idle_inhibitor",
         //"backlight",
@@ -26,7 +27,6 @@
         "battery",
         "battery#bat2",
         "clock",
-        "tray",
         "custom/power"
     ],
 
@@ -58,6 +58,7 @@
       "window-rewrite-default": "󰣆",
       "window-rewrite": {
         "class<alacritty>": "",
+        "title<Neovim>": "",
         "class<org.gnome.Nautilus>": "",
         "class<org.kde.dolphin>": "󱢴",
         "class<firefox>": "",
@@ -74,7 +75,7 @@
         "class<virt-manager>": "",
         "class<.*Timeshift.*>": "󰁯",
         "class<.*wine.*>": "󰡶",
-        "class<org.pwt.zathura>": "󰈙",
+        "class<.*zathura.*>": "󰈙",
         "class<.*pavu.*>": "󱡫",
         "class<.*QjackCtl.*>": "󱡭",
         "title<.*youtube.*>": "",
@@ -178,11 +179,11 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         // "format-wifi": "[{essid} ({signalStrength}%)  ]",
         "format-wifi": "{icon} ",
-        "format-ethernet": "[󰈀 {ipaddr}/{cidr}]",
-        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-ethernet": "[󰈀 ]",
+        "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
         "format-linked": "[{ifname} (No IP)]",
         "format-disconnected": "󰤭 ",
-        "format-alt": "[{essid}: {ipaddr}/{cidr}]",
+        "format-alt": "[{essid}: {gwaddr}]",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
     },
 

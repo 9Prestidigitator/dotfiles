@@ -11,7 +11,12 @@ pacupdate
 source $CONFIG_FILE
 
 if [[ ${FileExplorer} == "on" ]]; then
-  [[ ${Dolphin} == "on" ]] && pinn dolphin qt5ct qt6ct kvantum kvantum breeze-icons
+  if [[ ${Dolphin} == "on" ]]; then
+    pinn dolphin qt5ct qt6ct kvantum kvantum breeze-icons
+    cp -fr ./dotfiles/configs/kde/dolphinrc $HOME/.config/dolphinrc
+    cp -fr ./dotfiles/configs/kde/kdeglobals $HOME/.config/kdeglobals
+    cp -fr ./dotfiles/configs/kde/kwalletrc $HOME/.config/kwalletrc
+  fi
   [[ ${Nautilus} == "on" ]] && pinn nautilus
 fi
 
@@ -21,4 +26,3 @@ if [[ ${Browser} == "on" ]]; then
   [[ ${Firefox} == "on" ]] && pinn firefox
   [[ ${Qute} == "on" ]] && pinn qutebrowser
 fi
-

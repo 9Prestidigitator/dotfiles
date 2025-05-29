@@ -1,10 +1,10 @@
 * {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "JetBrainsMono Nerd Font";
   color: white;
   text-shadow: 0px 0px 1.4px rgba(0, 0, 0, 0.3);
   padding: 0px 2px;
-  margin: 0;
+  margin: 1.8;
 }
 
 window#waybar {
@@ -14,23 +14,61 @@ window#waybar {
 
 #workspaces button {
   all: unset;
-  background: transparent;
-  padding: 0px 6px;
+  padding: 0px 8px;
 }
 
 #workspaces button label {
+  background: transparent;
   color: #453f3b;
 }
 
 #workspaces button.active label {
+  background: transparent;
   color: white; /* white text for the active workspace */
 }
 
 #workspaces button.special label {
-  color: #453f3b; /* #5C544F */
+  color: #D9D9D9;
+}
+
+#workspaces button.special {
+  margin-right: 8px;
+  margin-left: 8px;
+  padding-left: 6px;
+  padding-right: 9px;
+  border-radius: 20px;
+  background: #453f3b; /* #5C544F */
 }
 
 #workspaces button.special.active label {
-  color: white; /* white text for the active workspace */
+  color: #383c4a; /* white text for the active workspace */
 }
 
+#workspaces button.special.active {
+  margin-right: 8px;
+  margin-left: 8px;
+  padding-left: 6px;
+  padding-right: 9px;
+  border-radius: 20px;
+  background: #D9D9D9;
+}
+
+#battery {
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 14px;
+  border-radius: 20px;
+  transition: none;
+  background: #D9D9D9;
+  color: #383c4a;
+}
+
+#pulseaudio {
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 15px;
+  border-radius: 20px;
+  transition: none;
+  background: #D9D9D9;
+  color: #383c4a;
+}

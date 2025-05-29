@@ -9,7 +9,7 @@ sudo -v
 ensure_in_dir
 
 # My favorite bash packages and utilities
-pinn tmux ripgrep fd starship fastfetch figlet timeshift htop fzf unzip
+pinn tmux ripgrep fd starship fastfetch figlet timeshift htop fzf unzip tree
 
 # Adding config files
 cp -f ./configs/tmux/.tmux.conf $HOME/.tmux.conf

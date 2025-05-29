@@ -4,10 +4,12 @@ shopt -s extglob
 
 source ./scripts/bash_functions.sh
 source ./scripts/arch/paccmds.sh
+pacupdate
 
 sudo -v
 
-pacupdate
+# Installing audio stuff
+pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol qjackctl
 
 # The idea is to get an automatic install that follows:
 # https://wiki.archlinux.org/title/Professional_audio
@@ -17,7 +19,8 @@ sudo usermod -aG realtime $(whoami)
 sudo usermod -aG audio $(whoami)
 
 # But also may some automatic installation of my Reaper config and extensions
-pinn reaper qjackctl
+pinn reaper
+[[ ! -d "$HOME/.config/REAPER" ]] && cp -fr ./configs/REAPER $HOME/.config
 
 # Overwitch; Overbridge substitute
 cd $REPO_CLONES
@@ -32,4 +35,3 @@ cd udev
 sudo make install
 
 ensure_in_dir
-
