@@ -1,0 +1,26 @@
+[global]
+font = JetBrainsMono Nerd Font 12
+transparency = 20
+frame_width = 0
+separator_color = frame
+padding = 12
+horizontal_padding = 20
+max_icon_size = 64
+icon_position = left
+origin = top-right
+markup = full
+width = 400
+
+[urgency_low]
+background = "#2e3440"
+foreground = "#d8dee9"
+
+[urgency_normal]
+background = "#3b4252"
+foreground = "#eceff4"
+
+[urgency_critical]
+background = "#bf616a"
+foreground = "#ffffff"
+frame_color = "#bf616a"
+

@@ -11,6 +11,7 @@ ensure_in_dir
 pinn hyprland hyprpaper waybar wofi hyprlock wlr-randr wl-clipboard hypridle qt5-wayland qt6-wayland xdg-desktop-portal-hyprland wev
 
 [[ -x "$(command -v paru)" ]] && paru -S grimblast
+[[ -x "$(command -v paru)" ]] && paru -S swayosd-git
 
 cp -fr ./configs/hypr $HOME/.config && cp -fr ./configs/wofi $HOME/.config && cp -fr ./configs/waybar $HOME/.config
 

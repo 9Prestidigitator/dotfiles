@@ -1,2 +1,1 @@
-# Need paru -S grimblast
-grimblast copy area
+grim -g "$(slurp)" - | wl-copy

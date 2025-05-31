@@ -1,9 +1,7 @@
 [font]
-size = 11.0
-
-[font.normal]
-family = "JetBrains Mono"
-style = "Regular"
+# normal = {family = "JetBrains Mono", style = "Regular"}
+normal = {family = "Hack Nerd Font Mono", style = "Regular"}
+size = 12
 
 [window]
 opacity=0

@@ -14,7 +14,7 @@ window#waybar {
 
 #workspaces button {
   all: unset;
-  padding: 0px 8px;
+  padding: 0px 6px;
 }
 
 #workspaces button label {
@@ -28,12 +28,11 @@ window#waybar {
 }
 
 #workspaces button.special label {
-  color: #D9D9D9;
+  color: #d9d9d9;
 }
 
 #workspaces button.special {
-  margin-right: 8px;
-  margin-left: 8px;
+  margin-left: 10px;
   padding-left: 6px;
   padding-right: 9px;
   border-radius: 20px;
@@ -45,30 +44,40 @@ window#waybar {
 }
 
 #workspaces button.special.active {
-  margin-right: 8px;
-  margin-left: 8px;
+  margin-left: 10px;
   padding-left: 6px;
   padding-right: 9px;
   border-radius: 20px;
-  background: #D9D9D9;
+  background: #d9d9d9;
+}
+
+#tray {
+  margin-right: -6px;
+  padding-right: 3px;
+}
+
+#network {
+  margin-left: -3px;
+  padding-left: 1px;
 }
 
 #battery {
-  margin-right: 8px;
-  padding-left: 16px;
-  padding-right: 14px;
+  margin-right: 6px;
+  padding-left: 14px;
+  padding-right: 12px;
   border-radius: 20px;
   transition: none;
-  background: #D9D9D9;
+  background: #d9d9d9;
   color: #383c4a;
 }
 
 #pulseaudio {
-  margin-right: 8px;
-  padding-left: 16px;
-  padding-right: 15px;
+  margin-right: 6px;
+  padding-left: 14px;
+  padding-right: 12px;
   border-radius: 20px;
   transition: none;
-  background: #D9D9D9;
+  background: #d9d9d9;
   color: #383c4a;
 }
+

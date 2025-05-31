@@ -18,12 +18,13 @@
         "mpd",
         //"idle_inhibitor",
         //"backlight",
+        "custom/media",
         "network",
         "pulseaudio",
         //"cpu",
         //"memory",
-        // "keyboard-state",
-        "power-profiles-daemon",
+        //"keyboard-state",
+        //"power-profiles-daemon",
         "battery",
         "battery#bat2",
         "clock",
@@ -43,7 +44,7 @@
     "hyprland/workspaces": {
       "format": "{icon} {windows}",
       "disable-scroll": true,
-      "all-outputs": false,
+      "all-outputs": true,
       "active-only": false,
       "show-special": true,
       "special-visible-only": false,
@@ -51,6 +52,7 @@
       },
       "format-icons": {
           "urgent": "",
+          "desktop": " ",
           "magic": " ",
           "magic_alt": " "
       },
@@ -72,6 +74,8 @@
         "class<REAPER>": "󰋆",
         "class<mpv>": "",
         "class<Signal>": "󰻞",
+        "class<expressvpn.*>": "󰖂",
+        "class<.*qbittorrent.*>": "",
         "class<virt-manager>": "",
         "class<.*Timeshift.*>": "󰁯",
         "class<.*wine.*>": "󰡶",
@@ -103,17 +107,18 @@
     },
 
     "hyprland/submap": {
-        "format": "{}",
+        "format": "󰆾 ",
         "tooltip": false
     },
 
     "tray": {
+      "format":"{icon} ",
         // "icon-size": 21,
         "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
+        "icons": {
+          "blueman": "bluetooth",
+          // "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        }
     },
 
     "clock": {
@@ -216,7 +221,7 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 
   /*
