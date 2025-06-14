@@ -15,10 +15,10 @@
     ],
     "modules-right": [
         "tray",
-        "mpd",
+        //"mpd",
         //"idle_inhibitor",
         //"backlight",
-        "custom/media",
+        //"custom/media",
         "network",
         "pulseaudio",
         //"cpu",
@@ -60,25 +60,34 @@
       "window-rewrite-default": "󰣆",
       "window-rewrite": {
         "class<alacritty>": "",
+        "class<ueberzugpp.*>": "󰥶",
         "title<Neovim>": "",
         "class<org.gnome.Nautilus>": "",
         "class<org.kde.dolphin>": "󱢴",
         "class<firefox>": "",
         "class<chrome>": "",
-        "class<Brave-browser>": "󱢿",
         "class<.*browser.*>": "",
+        "class<.*brave-browser.*>": "󱢿",
         "class<.*python.*>": "",
+        "class<.*Matplotlib.*>": "",
         "class<steam>": "",
         "class<discord>": "",
         "class<spotify>": "",
         "class<REAPER>": "󰋆",
+        "class<.*guitarpro.*>": "󰋅",
         "class<mpv>": "",
         "class<Signal>": "󰻞",
         "class<expressvpn.*>": "󰖂",
+        "class<libreoffice-calc>": "",
+        "class<libreoffice-writer>": "",
+        "class<gimp>": "",
+        "class<.*Inkscape>": "",
+        "class<.*calibre.*>": "",
         "class<.*qbittorrent.*>": "",
         "class<virt-manager>": "",
         "class<.*Timeshift.*>": "󰁯",
         "class<.*wine.*>": "󰡶",
+        "class<.*bottles>": "󰡔",
         "class<.*zathura.*>": "󰈙",
         "class<.*pavu.*>": "󱡫",
         "class<.*QjackCtl.*>": "󱡭",
@@ -86,6 +95,9 @@
         "title<.*github.*>": "",
         "title<.*Picture-in-Picture.*>": "",
         "title<.*Picture in picture.*>": "",
+        // Games
+        "class<factorio>": "",
+        "title<Sid Meier's Civilization V.*>": "󰡄",
         // "class<firefox> title<.*github.*>": "  ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
         "code": " 󰨞 ",
         "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output
@@ -114,7 +126,7 @@
     "tray": {
       "format":"{icon} ",
         // "icon-size": 21,
-        "spacing": 10,
+        "spacing": 15,
         "icons": {
           "blueman": "bluetooth",
           // "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
@@ -184,12 +196,13 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         // "format-wifi": "[{essid} ({signalStrength}%)  ]",
         "format-wifi": "{icon} ",
-        "format-ethernet": "[󰈀 ]",
-        "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
-        "format-linked": "[{ifname} (No IP)]",
+        "format-ethernet": "󰈀 ",
+        // "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
         "format-disconnected": "󰤭 ",
-        "format-alt": "[{essid}: {gwaddr}]",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+        "tooltip-format": "{essid}: {gwaddr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "on-click": "alacritty --title 'Wifi' -e nmtui"
     },
 
     "pulseaudio": {
@@ -216,11 +229,11 @@
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
-            "spotify": "",
-            "default": "🎜"
+            "spotify": ""
+            // "default": "🎜"
         },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "escape": true
+        //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 

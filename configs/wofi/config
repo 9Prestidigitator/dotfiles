@@ -1,2 +1,5 @@
 mode=drun
 allow_images=true
+lines=8
+dynamic_lines=true
+key_expand=Tab

@@ -18,6 +18,12 @@ cp -fr ./configs/fastfetch $HOME/.config/
 # Installing and configuring security packages
 pinn ufw fail2ban openssh
 sudo systemctl enable ufw
+sudo ufw limit 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw enable
 
 # Installing custom ~/.bashrc
 default_bashrc=$'#\n# ~/.bashrc\n#'

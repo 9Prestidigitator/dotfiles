@@ -15,6 +15,7 @@ x=4
 y=0
 
 [colors]
+cursor = { text = "#383c4a", cursor = "#e8f6f8"}
 
 [selection]
 save_to_clipboard = true

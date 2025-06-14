@@ -9,7 +9,13 @@ pacupdate
 sudo -v
 
 # Installing audio stuff
-pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol qjackctl
+pinn pipewire pipewire-pulse pipewire-jack wireplumber realtime-privileges pavucontrol qjackctl yabridge yabridgectl
+
+# There is a bug in the latest release of wine as of 06/03/2025
+# Where the UI on windows VSTs do not follow the position of the window.
+# The last known version of wine to work with yabridge is 9.21:
+sudo pacman -U ./configs/wine/wine-staging-9.21-1-x86_64.pkg.tar.zst
+# Need to add script below that makes pacman ignore updating wine.
 
 # The idea is to get an automatic install that follows:
 # https://wiki.archlinux.org/title/Professional_audio
@@ -19,7 +25,7 @@ sudo usermod -aG realtime $(whoami)
 sudo usermod -aG audio $(whoami)
 
 # But also may some automatic installation of my Reaper config and extensions
-pinn reaper
+pinn reaper reapack sws
 [[ ! -d "$HOME/.config/REAPER" ]] && cp -fr ./configs/REAPER $HOME/.config
 
 # Overwitch; Overbridge substitute

@@ -7,5 +7,5 @@ source ./scripts/arch/paccmds.sh
 
 sudo -v
 
-pinn alacritty
+pinn alacritty ueberzugpp
 mkdir -p ~/.config/nvim && cp -fr ./configs/alacritty $HOME/.config/
