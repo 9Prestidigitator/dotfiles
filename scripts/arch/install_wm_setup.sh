@@ -10,11 +10,11 @@ ensure_in_dir
 sudo -v
 
 # Essential packages no matter what display manager you use
-pinn brightnessctl bluez bluez-utils blueman archlinux-xdg-menu dunst adw-gtk-theme
+pinn brightnessctl bluez bluez-utils blueman archlinux-xdg-menu dunst adw-gtk-theme libnotify
 sudo systemctl enable --now bluetooth
 
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
-pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji fontconfig
+pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji ttf-hack-nerd ttf-ubuntu-nerd fontconfig
 
 gpud=$(detect_gpu)
 if [[ "$gpud" == "Intel" ]]; then
