@@ -9,7 +9,8 @@ source $CONFIG_FILE
 sudo -v
 
 pinn neovim npm python nodejs dotnet-runtime dotnet-sdk
-[[ ${latexmk} == "on" ]] && pinn zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science && git clone https://github.com/dracula/zathura ~/.config/zathura/
+[[ ${latexmk} == "on" ]] && pinn zathura zathura-pdf-poppler texlive-core texlive-binextra texlive-science &&
+# git clone https://github.com/dracula/zathura ~/.config/zathura/
 
 REPO_URL="https://github.com/9Prestidigitator/nvim.git"
 TARGET_DIR="$HOME/.config/nvim"
