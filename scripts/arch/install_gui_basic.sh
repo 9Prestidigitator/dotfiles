@@ -13,9 +13,9 @@ source $CONFIG_FILE
 if [[ ${FileExplorer} == "on" ]]; then
   if [[ ${Dolphin} == "on" ]]; then
     pinn dolphin qt5ct qt6ct kvantum kvantum breeze-icons
-    cp -fr ./dotfiles/configs/kde/dolphinrc $HOME/.config/dolphinrc
-    cp -fr ./dotfiles/configs/kde/kdeglobals $HOME/.config/kdeglobals
-    cp -fr ./dotfiles/configs/kde/kwalletrc $HOME/.config/kwalletrc
+    cp -fr ./configs/kde/dolphinrc $HOME/.config/dolphinrc
+    cp -fr ./configs/kde/kdeglobals $HOME/.config/kdeglobals
+    cp -fr ./configs/kde/kwalletrc $HOME/.config/kwalletrc
   fi
   [[ ${Nautilus} == "on" ]] && pinn nautilus
 fi
