@@ -13,6 +13,9 @@ sudo -v
 pinn brightnessctl bluez bluez-utils blueman archlinux-xdg-menu dunst adw-gtk-theme libnotify
 sudo systemctl enable --now bluetooth
 
+# Copy dunst config
+mkdir -p ~/.config/dunst && cp -fr ./configs/dunst $HOME/.config/
+
 # Installing fonts, mainly relies on nerd fonts' Jetbrains Mono may try others...
 pinn ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-emoji ttf-hack-nerd ttf-ubuntu-nerd fontconfig
 
