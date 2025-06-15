@@ -7,6 +7,7 @@ source ./scripts/arch/paccmds.sh
 
 sudo -v
 pacupdate
+ensure_in_dir
 
 source $CONFIG_FILE
 
