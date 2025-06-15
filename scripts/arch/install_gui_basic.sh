@@ -22,7 +22,6 @@ fi
 
 if [[ ${Browser} == "on" ]]; then
   # Brave installation needs an aur helper
-  # ([[ -x "$(command -v paru)" ]] || [[ -x "$(command -v yay)" ]]) && [[ ${Brave} == "on" ]] && $(curl -fsS https://dl.brave.com/install.sh | sh)
   { command -v paru >/dev/null || command -v yay >/dev/null; } && [[ $Brave == "on" ]] && curl -fsS https://dl.brave.com/install.sh | sh || true
   [[ ${Firefox} == "on" ]] && pinn firefox
   [[ ${Qute} == "on" ]] && pinn qutebrowser
